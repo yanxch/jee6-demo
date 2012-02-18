@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+	<navigation-rule>
+		<display-name>/xhtml/registerStudent.xhtml</display-name>
+		<from-view-id>/xhtml/registerStudent.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/xhtml/listStudents.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>/xhtml/registerStudent.xhtml</display-name>
+		<from-view-id>/xhtml/registerStudent.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>failure</from-outcome>
+			<to-view-id>/xhtml/registerStudent.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>/xhtml/listStudents.xhtml</display-name>
+		<from-view-id>/xhtml/listStudents.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>register</from-outcome>
+			<to-view-id>/xhtml/registerStudent.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/xhtml/listStudents.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>login.xhtml</display-name>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>failure</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/xhtml/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>	
+	
+	<converter>
+    		<description>A Converter for phone number</description>
+    		<converter-id>PhoneNumberConverter</converter-id>
+    		<converter-class>
+        		ch.demo.web.PhoneNumberConverter
+    		</converter-class>
+	</converter>
+
+	<converter>
+    		<description>A Converter for Locale</description>
+    		<converter-id>LocaleConverter</converter-id>
+    		<converter-class>
+        		ch.demo.web.LocaleConverter
+    		</converter-class>
+	</converter>
+	
+    <validator>
+       <validator-id>PhoneNumberValidator</validator-id>
+       <validator-class>ch.demo.web.PhoneNumberValidator</validator-class>
+    </validator>	
+
+	<application>
+		<locale-config>
+			<default-locale>fr_CH</default-locale>
+		</locale-config>	
+		<resource-bundle>
+			<base-name>resources/labels</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+		<message-bundle>resources.messages</message-bundle>
+	</application>
+
+    <factory>
+		<exception-handler-factory>ch.demo.web.WebExceptionHandlerFactory</exception-handler-factory>
+    </factory>
+
+</faces-config>

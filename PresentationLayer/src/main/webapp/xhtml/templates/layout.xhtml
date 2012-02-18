@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view locale="#{sessionBean.localeCode}">
+	<h:head>
+		<title><ui:insert name="title" /></title>
+		<link type="text/css" rel="stylesheet"
+			href="#{request.contextPath}/css/styles.css" />
+	</h:head>
+	<h:body>
+		<div class="pageHeader">
+			<br />
+
+			<h:panelGrid columns="4">
+				<h:form id="languageForm">
+					<h:panelGrid columns="3">
+						<h:outputText value="#{msgs.language}" />
+						<h:selectOneMenu id="languageChoice"
+							value="#{sessionBean.localeCode}" onchange="submit()"
+							valueChangeListener="#{sessionBean.countryLocaleCodeChanged}">
+							<f:selectItems var="item" itemLabel="#{msgs[item]}"
+								value="#{sessionBean.countries}" />
+							<f:converter converterId="LocaleConverter" />
+						</h:selectOneMenu>
+						<p:message id="msgForLanguageChoice" for="languageChoice" />
+					</h:panelGrid>
+				</h:form>
+
+				<ui:include src="/xhtml/templates/searchbox.xhtml" />
+
+
+
+				<h:outputText value="#{request.remoteUser}" />
+
+				<h:form>
+					<h:commandButton disabled="#{sessionBean.username == 'guest'}"
+						value="logout" action="#{sessionBean.logout}" />
+				</h:form>
+
+
+			</h:panelGrid>
+			<br />
+		</div>
+
+		<div class="pageTitle">
+			<ui:insert name="title" />
+		</div>
+
+		<div class="container">
+			<ui:insert name="content" />
+		</div>
+
+		<div class="pageFooter">
+			<br /> <h:outputText value="#{msgs.footerTitle}"/><br /> <br />
+		</div>
+		<ui:debug />
+	</h:body>
+</f:view>
+</html>
