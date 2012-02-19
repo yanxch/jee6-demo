@@ -15,18 +15,18 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class StudentServiceRestImpl extends StudentServiceImpl {
 
-	/** The default logger for the class. */
-	private static final Logger LOGGER = Logger.getAnonymousLogger();
+    /** The default logger for the class. */
+    private static final Logger LOGGER = Logger.getAnonymousLogger();
 
-	/** The serial-id. */
-	private static final long serialVersionUID = 1386507985359072399L;
+    /** The serial-id. */
+    private static final long serialVersionUID = 1386507985359072399L;
 
-	/**
-	 * Empty constructor.
-	 */
-	public StudentServiceRestImpl() {
-		super();
-		LOGGER.info("This is the real Rest implementation");
-	}
+    /**
+     * Empty constructor.
+     */
+    public StudentServiceRestImpl() {
+        super();
+        LOGGER.info("This is the real Rest implementation");
+    }
 
 }

@@ -12,9 +12,10 @@ import javax.interceptor.InterceptorBinding;
 
 /**
  * @author hostettler
- *
+ * 
  */
 @InterceptorBinding
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.TYPE})
-public @interface Benchmarkable {}
+@Target({ ElementType.METHOD, ElementType.TYPE })
+public @interface Benchmarkable {
+}

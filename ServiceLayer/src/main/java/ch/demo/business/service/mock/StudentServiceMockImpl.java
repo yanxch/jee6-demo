@@ -23,66 +23,66 @@ import ch.demo.business.service.StudentService;
 @Alternative
 @ApplicationScoped
 public class StudentServiceMockImpl implements StudentService, Serializable {
-	
-	/** The default logger for the class. */
-	private static final Logger LOGGER = Logger.getAnonymousLogger();
 
-	/** The serial-id. */
-	private static final long serialVersionUID = 1386508985359072399L;
+    /** The default logger for the class. */
+    private static final Logger LOGGER = Logger.getAnonymousLogger();
 
-	/**
-	 * Internal list for mocking a real database.
-	 */
-	private List<Student> mStudentList;
+    /** The serial-id. */
+    private static final long serialVersionUID = 1386508985359072399L;
 
-	/**
-	 * Empty constructor.
-	 */
-	public StudentServiceMockImpl() {
-		LOGGER.info("This is the mock implementation");
-		this.mStudentList = new ArrayList<Student>();
-		this.mStudentList.add(new Student("Hostettler", "Steve", new Date()));
-		LOGGER.info("Creation of a new StudentServiceImpl");
-	}
+    /**
+     * Internal list for mocking a real database.
+     */
+    private List<Student> mStudentList;
 
-	/** {@inheritDoc} */
-	@Override
-	public int getNbStudent() {
-		return this.mStudentList.size();
-	}
+    /**
+     * Empty constructor.
+     */
+    public StudentServiceMockImpl() {
+        LOGGER.info("This is the mock implementation");
+        this.mStudentList = new ArrayList<Student>();
+        this.mStudentList.add(new Student("Hostettler", "Steve", new Date()));
+        LOGGER.info("Creation of a new StudentServiceImpl");
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public List<Student> getAll() {
-		return this.mStudentList;
-	}
+    /** {@inheritDoc} */
+    @Override
+    public int getNbStudent() {
+        return this.mStudentList.size();
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	@Benchmarkable
-	public void add(final Student student) {
-		this.mStudentList.add(student);
-	}
+    /** {@inheritDoc} */
+    @Override
+    public List<Student> getAll() {
+        return this.mStudentList;
+    }
 
-	/** {@inheritDoc} */
-	@Override
-	public int[] getDistribution(final int n) {
-		int[] grades = new int[4];
+    /** {@inheritDoc} */
+    @Override
+    @Benchmarkable
+    public void add(final Student student) {
+        this.mStudentList.add(student);
+    }
 
-		for (Student s : this.getAll()) {
-			grades[(s.getAvgGrade().intValue() - 1) / (TOTAL / n)]++;
-		}
-		return grades;
-	}
+    /** {@inheritDoc} */
+    @Override
+    public int[] getDistribution(final int n) {
+        int[] grades = new int[4];
 
-	/** {@inheritDoc} */
-	@Override
-	public Student getStudentById(final String id) {
-		for (Student s : this.getAll()) {
-			if (s.getKey().equals(id)) {
-				return s;
-			}
-		}
-		return null;
-	}
+        for (Student s : this.getAll()) {
+            grades[(s.getAvgGrade().intValue() - 1) / (TOTAL / n)]++;
+        }
+        return grades;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Student getStudentById(final String id) {
+        for (Student s : this.getAll()) {
+            if (s.getKey().equals(id)) {
+                return s;
+            }
+        }
+        return null;
+    }
 }
