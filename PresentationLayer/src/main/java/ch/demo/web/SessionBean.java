@@ -50,7 +50,7 @@ public class SessionBean implements Serializable {
 	 * @return the username
 	 */
 	public final String getUsername() {
-		
+
 		Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
 		if (principal != null) {
 			return principal.getName();
@@ -104,6 +104,7 @@ public class SessionBean implements Serializable {
 
 	/**
 	 * Invalidates the session.
+	 * 
 	 * @return a string to navigate to the login page
 	 */
 	public String logout() {

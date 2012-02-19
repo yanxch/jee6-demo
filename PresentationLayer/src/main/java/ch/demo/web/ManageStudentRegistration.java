@@ -36,11 +36,11 @@ public class ManageStudentRegistration implements Serializable {
 
 	/** Work instance. */
 	private Student mStudent;
-	
+
 	/** Inject the current conversation. */
 	@Inject
 	private Conversation mConversation;
-	
+
 	/** The service that provides the business logic for the student registration process. */
 	@Inject
 	private StudentService mService;
@@ -72,7 +72,7 @@ public class ManageStudentRegistration implements Serializable {
 	public String toRegistration() {
 		LOGGER.debug("registration");
 		this.mStudent = new Student();
-		//Reset the flow
+		// Reset the flow
 		if (!this.mConversation.isTransient()) {
 			this.mConversation.end();
 		}
@@ -87,7 +87,7 @@ public class ManageStudentRegistration implements Serializable {
 	 */
 	public String toList() {
 		LOGGER.debug("list");
-		//Ends the flow
+		// Ends the flow
 		this.mConversation.end();
 		return "list";
 	}

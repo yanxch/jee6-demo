@@ -13,6 +13,7 @@ import javax.faces.convert.ConverterException;
 
 /**
  * Converts a string into a Locale object.
+ * 
  * @author hostettler
  * 
  */
@@ -21,15 +22,18 @@ public class LocaleConverter implements Converter {
 	/**
 	 * Default constructor.
 	 */
-	public LocaleConverter() { }
+	public LocaleConverter() {
+	}
 
-	
 	/**
-	 * @param context of the application
-	 * @param component to display
-	 * @param value to convert
-	 * @return  an object that corresponds to the string representation.
-	 */	
+	 * @param context
+	 *            of the application
+	 * @param component
+	 *            to display
+	 * @param value
+	 *            to convert
+	 * @return an object that corresponds to the string representation.
+	 */
 	public Object getAsObject(final FacesContext context, final UIComponent component, final String value) {
 		if (value == null || (value.trim().length() == 0)) {
 			return value;
@@ -39,10 +43,10 @@ public class LocaleConverter implements Converter {
 		int hyphenCount = 0;
 		boolean conversionError = false;
 		StringTokenizer hyphenTokenizer = new StringTokenizer(value, "_");
-		
+
 		String language = null;
 		String countryCode = null;
-		
+
 		while (hyphenTokenizer.hasMoreTokens()) {
 			String token = hyphenTokenizer.nextToken();
 			try {
@@ -60,7 +64,7 @@ public class LocaleConverter implements Converter {
 		}
 
 		Locale locale = null;
-		
+
 		if (conversionError || (hyphenCount != 2)) {
 			throw new ConverterException();
 		} else {
@@ -71,10 +75,13 @@ public class LocaleConverter implements Converter {
 	}
 
 	/**
-	 * @param context of the application
-	 * @param component to display
-	 * @param value to convert
-	 * @return  a string representation for the Locale object.
+	 * @param context
+	 *            of the application
+	 * @param component
+	 *            to display
+	 * @param value
+	 *            to convert
+	 * @return a string representation for the Locale object.
 	 */
 	public String getAsString(final FacesContext context, final UIComponent component, final Object value) {
 		Locale locale = null;

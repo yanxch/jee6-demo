@@ -27,10 +27,11 @@ public class WebExceptionHandlerFactory extends ExceptionHandlerFactory {
 	/** Base exception factory. */
 	private ExceptionHandlerFactory mBase;
 
-	
 	/**
 	 * Build a new factory with an existing base factory.
-	 * @param base factory
+	 * 
+	 * @param base
+	 *            factory
 	 */
 	public WebExceptionHandlerFactory(final ExceptionHandlerFactory base) {
 		this.mBase = base;
@@ -45,8 +46,9 @@ public class WebExceptionHandlerFactory extends ExceptionHandlerFactory {
 
 /**
  * Handles the timeout-related exceptions.
+ * 
  * @author hostettler
- *
+ * 
  */
 class WebExceptionHandlerWrapper extends ExceptionHandlerWrapper {
 
@@ -55,7 +57,9 @@ class WebExceptionHandlerWrapper extends ExceptionHandlerWrapper {
 
 	/**
 	 * Creates a new wrapper around the existing handler.
-	 * @param wrapped exception handle
+	 * 
+	 * @param wrapped
+	 *            exception handle
 	 */
 	public WebExceptionHandlerWrapper(final ExceptionHandler wrapped) {
 		this.mWrapped = wrapped;

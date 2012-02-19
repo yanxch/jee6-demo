@@ -34,10 +34,9 @@ public class PhoneNumberValidator implements Validator {
 		PhoneNumber number = (PhoneNumber) value;
 		if (number.getCountryCode() == 41) {
 			FacesMessage message = new FacesMessage();
-			
+
 			ResourceBundle bundle = context.getApplication().getResourceBundle(context, "msgs");
 
-					
 			message.setDetail(bundle.getString("errorSwissNumberForbidden"));
 			message.setSummary(bundle.getString("errorPhoneInvalid"));
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
