@@ -6,11 +6,13 @@
         <groupId>JEE6-Demo</groupId>
         <artifactId>JEE6-Demo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../JEE6-Demo/pom.xml</relativePath>        
+        <relativePath>../JEE6-Demo/pom.xml</relativePath>
     </parent>
     
    <artifactId>PresentationLayer</artifactId>
+   <name>Presentation Layer</name>
    <packaging>war</packaging>
+   <url>../../../PresentationLayer/target/site</url>
 
    <repositories>
       <repository>
