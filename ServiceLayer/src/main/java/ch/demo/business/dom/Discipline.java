@@ -7,20 +7,20 @@ package ch.demo.business.dom;
  */
 public enum Discipline {
     /** Maths. */
-    MATHEMATICS("Mathématique"),
+    MATHEMATICS("Mathematics"),
     /** Biology. */
-    BIOLOGY("Biologie"),
+    BIOLOGY("Biology"),
     /** French. */
-    FRENCH("Français"),
+    FRENCH("French"),
     /** English. */
-    ENGLISH("Anglais"),
+    ENGLISH("English"),
     /** German. */
-    GERMAN("Allemand"),
+    GERMAN("German"),
     /** History. */
 
-    HISTORY("Histoire"),
+    HISTORY("History"),
     /** Geography. */
-    GEOGRAPHY("Geographie");
+    GEOGRAPHY("Geography");
 
     /**
      * Constructor.

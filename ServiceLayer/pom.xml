@@ -11,10 +11,10 @@
     
 	<artifactId>ServiceLayer</artifactId>
 	<packaging>jar</packaging>
-	<name>Service Layer for the JEE 6 demo</name>
+	<name>Service Layer</name>
 	<description>This project handles the service layer of the JEE 6 demo</description>
-	<url>http://jee6-demo.googlecode.com</url>
-
+    <url>../../../ServiceLayer/target/site</url>
+   
 	<dependencies>
 		<dependency>
 			<groupId>org.jboss.weld.se</groupId>

@@ -153,16 +153,13 @@ public class Student implements Serializable {
      */
     public final void validate() {
         if (this.getFirstName() == null) {
-            throw new IllegalArgumentException(
-                    "Le prénom ne doit pas être vide");
+            throw new IllegalArgumentException("Firstname is mandatory");
         }
         if (this.getLastName() == null) {
-            throw new IllegalArgumentException(
-                    "Le nom de famille ne doit pas être vide");
+            throw new IllegalArgumentException("Lastname is mandatory");
         }
         if (this.getBirthDate() == null) {
-            throw new IllegalArgumentException(
-                    "La date de naissance ne doit pas être vide");
+            throw new IllegalArgumentException("Birthdate is mandatory");
         }
     }
 
