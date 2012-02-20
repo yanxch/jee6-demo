@@ -78,7 +78,7 @@
          <default-locale>fr_CH</default-locale>
       </locale-config>   
       <resource-bundle>
-         <base-name>resources/labels</base-name>
+         <base-name>ch.demo.web.UTF8Text</base-name>
          <var>msgs</var>
       </resource-bundle>
       <message-bundle>resources.messages</message-bundle>
