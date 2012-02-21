@@ -15,27 +15,28 @@
 
    <ui:define name="content">
 
+<div class="central">
+
       <h:form id="login" prependId="false"
          onsubmit="setvalue(); document.#{p:component('login')}.action='j_security_check';">
-         <h:panelGrid id="loginGrid" columns="3">
-            <h:outputText for="j_username" value="${msgs.username}" />
+         <h:panelGrid cellspacing="10" id="loginGrid" columns="3">
+            <h:outputText styleClass="ui-widget" for="j_username" value="${msgs.username}" />
             <p:inputText id="j_username" required="true">
                <f:validateLength minimum="4" />
                <f:validateRequired />
                <p:ajax event="blur" update="msgj_username" />
             </p:inputText>
-            <h:message id="msgj_username" for="j_username" />
+            <h:message  styleClass="errorMsg"  id="msgj_username" for="j_username" />
 
-            <h:outputText for="password" value="${msgs.password}" />
+            <h:outputText styleClass="ui-widget" for="password" value="${msgs.password}" />
             <p:password id="password" required="true">
                <f:validateLength minimum="4" />
                <f:validateRequired />
                <p:ajax event="blur" update="msgj_password" />
             </p:password>
-            <h:message id="msgj_password" for="password" />
+            <h:message styleClass="errorMsg" id="msgj_password" for="password" />
 
             <h:inputHidden id="j_password" />
-
             <p:commandButton
                onclick="document.#{component.clientId}.action='j_security_check';"
                value="${msgs.login}" />
@@ -48,5 +49,7 @@
                document.getElementById('j_password').value = pass;
            }
       </script>
+      
+</div>      
    </ui:define>
 </ui:composition>

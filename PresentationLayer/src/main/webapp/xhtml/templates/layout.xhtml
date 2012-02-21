@@ -18,14 +18,15 @@
       <div class="pageHeader">
          <br />
 
-         <h:panelGrid columns="4">
+         <h:panelGrid columns="5">
             <h:form id="languageForm">
                <h:panelGrid columns="3">
                   <h:outputText value="#{msgs.language}" />
-                  <h:selectOneMenu id="languageChoice"
+                  <h:selectOneMenu 
+                        id="languageChoice"
                      value="#{sessionBean.localeCode}" onchange="submit()"
                      valueChangeListener="#{sessionBean.countryLocaleCodeChanged}">
-                     <f:selectItems var="item" itemLabel="#{msgs[item]}"
+                     <f:selectItems  var="item" itemLabel="#{msgs[item]}"
                         value="#{sessionBean.countries}" />
                      <f:converter converterId="LocaleConverter" />
                   </h:selectOneMenu>
@@ -36,21 +37,22 @@
             <ui:include src="/xhtml/templates/searchbox.xhtml" />
 
 
-
+            
             <h:outputText value="#{request.remoteUser}" />
-
             <h:form>
-               <h:commandButton disabled="#{sessionBean.username == 'guest'}"
-                  value="logout" action="#{sessionBean.logout}" />
+              <h:commandButton rendered="#{sessionBean.username != 'guest'}"
+              value="logout" action="#{sessionBean.logout}" />
             </h:form>
-
+            
 
          </h:panelGrid>
          <br />
       </div>
 
       <div class="pageTitle">
+         <br/>
          <ui:insert name="title" />
+         <hr/>
       </div>
 
       <div class="container">
@@ -58,7 +60,9 @@
       </div>
 
       <div class="pageFooter">
-         <br /> <h:outputText value="#{msgs.footerTitle}"/><br /> <br />
+            <br/>
+         <center> <h:outputText  value="#{msgs.footerTitle}"/></center>
+         <br/>
       </div>
       <ui:debug />
    </h:body>

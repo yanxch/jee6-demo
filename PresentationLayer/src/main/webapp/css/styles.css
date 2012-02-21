@@ -1,58 +1,108 @@
-.ui-widget, .ui-widget .ui-widget { font-size: 95% !important;
+.ui-widget,.ui-widget .ui-widget {
+	font-size: 95% !important;
 }
 
 .header {
- font-style: normal;
- font-weight: bold;
- margin-bottom: 20px;
+	font-style: normal;
+	font-weight: bold;
+	margin-bottom: 20px;
+	margin-bottom: 1em;
 }
 
 .alignleft {
- text-align: left;
+	text-align: left;
 }
 
 .aligncenter {
- text-align: center;
+	text-align: center;
 }
-      
+
 .alignright {
- text-align: right;
+	text-align: right;
 }
 
-.container { 
-   width: 100%; 
-   height: 100%; 
-   display: table;
+.ui-fieldset-content {
+	text-align: left;
 }
 
-.container-vertically-centered { 
-   width: 100%; 
-   vertical-align: middle; 
-   height: 100%; 
-   display: table-cell;
-   margin-top : 100px;
+.container {
+	width: 100%;
+	height: 100%;
+	display: table;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.container-vertically-centered {
+	width: 100%;
+	vertical-align: middle;
+	height: 100%;
+	display: table-cell;
+	margin-top: 100px;
 }
 
 .container-horizontally-center {
-   margin-top : 50px;
-   margin-left: auto;
-   margin-right: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-
 .pageTitle {
-   color:black;
-   font-size:40px;
-   text-align:center;
-   background-color: green;
+	color: black;
+	font-size: 24px !important;
+	font-weight: bold;
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+	text-align: center;
+	margin-bottom: 1em;
 }
 
 .pageHeader {
-   color:red;
-   background-color: blue;
+	color: white;
+	background-color: rgb(0, 51, 71);
 }
 
 .pageFooter {
-   color:red;
-   background-color: yellow;
+	color: white;
+	background-color: rgb(0, 51, 71);
+	font-size: 12px !important;
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
 }
+
+.central {
+	margin-top: 5em;
+	width: 65%;
+	margin-left: auto;
+	margin-bottom: 5em;
+}
+
+.ui-widget,.ui-widget .ui-widget {
+	font-size: 14px !important;
+	font-weight: bold;
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+}
+
+.errorMsg {
+	font-size: 14px !important;
+	font-weight: bold;
+	color: rgb(200, 0, 0);
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+}
+
+* {
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+	font-size: 14px !important;
+	text-align: left;
+}
+
+select,input {
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+	font-size: 14px !important;
+}
+
+hr {
+	height: 2px;
+	padding: 0;
+	background-color: rgb(0, 51, 71);
+	background-color: rgb(0, 51, 71);
+	border: 0;
+}
+
