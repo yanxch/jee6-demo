@@ -65,7 +65,7 @@ public class Student implements Serializable {
         this.mFirstName = firstName;
         this.mLastName = lastName;
         this.mBirthDate = birthDate;
-
+        validate();
     }
 
     /**
@@ -163,15 +163,21 @@ public class Student implements Serializable {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode() {
-        if (this.mLastName != null) {
-            return this.mLastName.hashCode();
-        } else {
-            return -1;
+        return this.mLastName.hashCode();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj instanceof Student) {
+            if (this.mLastName.equals(((Student) obj).mLastName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -67,7 +67,7 @@ public class StudentServiceMockImpl implements StudentService, Serializable {
     /** {@inheritDoc} */
     @Override
     public int[] getDistribution(final int n) {
-        int[] grades = new int[4];
+        int[] grades = new int[n];
 
         for (Student s : this.getAll()) {
             grades[(s.getAvgGrade().intValue() - 1) / (TOTAL / n)]++;

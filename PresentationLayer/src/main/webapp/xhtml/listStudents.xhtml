@@ -15,7 +15,7 @@
 	<ui:define name="content">
 
 		<h:form>
-			<p:dataTable var="student"
+			<p:dataTable var="student" id="studentTable"
 				value="#{manageStudentRegistration.service.all}" paginator="true"
 				rows="10" rowKey="#{student.key}"
 				selection="#{manageStudentRegistration.selectedStudent}"
@@ -23,6 +23,10 @@
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} 
          {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15">
+
+                 <p:ajax event="rowSelect"   update="studentTable" />  
+                 <p:ajax event="rowUnselect" update="studentTable"/>  
+  
 
 				<p:column sortBy="#{student.lastName}">
 					<f:facet name="header">
@@ -70,7 +74,7 @@
 				<f:facet name="footer">
 					<p:commandButton value="#{msgs.details}"
 						icon="ui-icon ui-icon-search"
-						disabled="#{manageStudentRegistration.service.nbStudent==0}"
+						disabled="#{manageStudentRegistration.service.nbStudent==0 || manageStudentRegistration.selectedStudent == null}"
 						update="display" oncomplete="studentDialog.show()" />
 
 					<ui:include src="templates/dialog.xhtml"></ui:include>

@@ -10,7 +10,6 @@ import java.util.Locale;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -82,25 +81,16 @@ public class SessionBean implements Serializable {
 	 *            tos set
 	 */
 	public void setLocaleCode(final Locale localeCode) {
-		this.mLocale = localeCode;
-	}
-
-	/**
-	 * Listener that watch the select one item list.
-	 * 
-	 * @param e
-	 *            the event to process
-	 */
-	public void countryLocaleCodeChanged(final ValueChangeEvent e) {
-		Locale newLocale = (Locale) e.getNewValue();
-
-		if (newLocale == null) {
+		if (localeCode == null) {
 			FacesMessage msg = new FacesMessage("Unknown locale");
 			msg.setSeverity(FacesMessage.SEVERITY_FATAL);
 			throw new ValidatorException(msg);
 		}
-		FacesContext.getCurrentInstance().getViewRoot().setLocale(newLocale);
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(localeCode);
+		
+		this.mLocale = localeCode;
 	}
+
 
 	/**
 	 * Invalidates the session.

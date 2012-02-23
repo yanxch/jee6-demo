@@ -1,6 +1,7 @@
 package ch.demo.business.service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -36,6 +37,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
     public StudentServiceImpl() {
         LOGGER.info("This is the real implementation");
         LOGGER.info("Creation of a new StudentServiceImpl");
+        this.mStudentList = new ArrayList<Student>();
     }
 
     /** {@inheritDoc} */
@@ -60,7 +62,7 @@ public class StudentServiceImpl implements StudentService, Serializable {
     /** {@inheritDoc} */
     @Override
     public int[] getDistribution(final int n) {
-        int[] grades = new int[4];
+        int[] grades = new int[n];
 
         for (Student s : this.getAll()) {
             grades[(s.getAvgGrade().intValue() - 1) / (TOTAL / n)]++;

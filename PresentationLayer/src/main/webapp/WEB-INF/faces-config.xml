@@ -50,6 +50,14 @@
          <from-outcome>logout</from-outcome>
          <to-view-id>/xhtml/index.xhtml</to-view-id>
       </navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+   	<display-name>/xhtml/registerStudent.xhtml</display-name>
+   	<from-view-id>/xhtml/registerStudent.xhtml</from-view-id>
+   	<navigation-case>
+   		<from-outcome>success</from-outcome>
+   		<to-view-id>/xhtml/listStudents.xhtml</to-view-id>
+   	</navigation-case>
    </navigation-rule>   
    
    <converter>
