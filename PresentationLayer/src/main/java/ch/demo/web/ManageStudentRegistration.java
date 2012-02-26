@@ -7,11 +7,12 @@ import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.log4j.Logger;
 import org.primefaces.model.chart.PieChartModel;
+import org.slf4j.Logger;
 
-import ch.demo.business.dom.Student;
+import ch.demo.business.service.JPAImpl;
 import ch.demo.business.service.StudentService;
+import ch.demo.dom.Student;
 
 /**
  * Controller for the Student registration process.
@@ -28,9 +29,10 @@ public class ManageStudentRegistration implements Serializable {
 	/** The serial-id. */
 	private static final long serialVersionUID = 2123342218792192804L;
 
-	/** The default logger for the class. */
-	private static final Logger LOGGER = Logger.getLogger(ManageStudentRegistration.class);
-
+	/** The logger for the class. */
+	@Inject
+	private transient Logger mLogger;
+	
 	/** The number of partitions of the domain of the grades. */
 	private static final int PARTS = 4;
 
@@ -42,15 +44,8 @@ public class ManageStudentRegistration implements Serializable {
 	private Conversation mConversation;
 
 	/** The service that provides the business logic for the student registration process. */
-	@Inject
+	@Inject @JPAImpl
 	private StudentService mService;
-
-	/**
-	 * Default constructor.
-	 */
-	public ManageStudentRegistration() {
-		LOGGER.info("Creation of a new ManageStudentBean");
-	}
 
 	/**
 	 * Action that adds the current student using the Student service.
@@ -70,7 +65,7 @@ public class ManageStudentRegistration implements Serializable {
 	 * @return the next action to perform (see faces-config)
 	 */
 	public String toRegistration() {
-		LOGGER.debug("registration");
+		mLogger.debug("registration");
 		this.mStudent = new Student();
 		// Reset the flow
 		if (!this.mConversation.isTransient()) {
@@ -86,7 +81,7 @@ public class ManageStudentRegistration implements Serializable {
 	 * @return the next action to perform (see faces-config)
 	 */
 	public String toList() {
-		LOGGER.debug("list");
+		mLogger.debug("list");
 		// Ends the flow
 		this.mConversation.end();
 		return "list";

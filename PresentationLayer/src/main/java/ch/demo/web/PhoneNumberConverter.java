@@ -14,7 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
-import ch.demo.business.dom.PhoneNumber;
+import ch.demo.dom.PhoneNumber;
 
 /**
  * Converts a string into a PhoneNumber object.
