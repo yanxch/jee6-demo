@@ -2,20 +2,58 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>JEE6-Demo</groupId>
-        <artifactId>JEE6-Demo</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../JEE6-Demo/pom.xml</relativePath>
-    </parent>
-    
+	<parent>
+		<groupId>JEE6-Demo</groupId>
+		<artifactId>JEE6-Demo</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../JEE6-Demo/pom.xml</relativePath>
+	</parent>
+
 	<artifactId>ServiceLayer</artifactId>
 	<packaging>jar</packaging>
 	<name>Service Layer</name>
 	<description>This project handles the service layer of the JEE 6 demo</description>
-    <url>../../../ServiceLayer/target/site</url>
-   
-	<dependencies>
+	<url>../../../ServiceLayer/target/site</url>
+
+
+    <repositories>
+        <repository>
+            <id>EclipseLink Repo</id>
+            <name>EclipseLink Repository</name>
+            <url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>2.4.8</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.8.2.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>10.8.2.2</version>
+            <scope>compile</scope>
+        </dependency>
 		<dependency>
 			<groupId>org.jboss.weld.se</groupId>
 			<artifactId>weld-se</artifactId>

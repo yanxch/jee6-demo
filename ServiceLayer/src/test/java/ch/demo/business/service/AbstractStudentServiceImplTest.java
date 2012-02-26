@@ -6,10 +6,10 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import ch.demo.business.dom.Discipline;
-import ch.demo.business.dom.Grade;
-import ch.demo.business.dom.PhoneNumber;
-import ch.demo.business.dom.Student;
+import ch.demo.dom.Discipline;
+import ch.demo.dom.Grade;
+import ch.demo.dom.PhoneNumber;
+import ch.demo.dom.Student;
 
 /**
  * Test the student service mock implementation.

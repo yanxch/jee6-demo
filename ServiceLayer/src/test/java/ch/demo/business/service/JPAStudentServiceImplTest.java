@@ -12,11 +12,11 @@ import ch.demo.helper.WeldJUnit4Runner;
  * @author hostettler
  */
 @RunWith(WeldJUnit4Runner.class)
-public class SoapStudentServiceImplTest extends AbstractStudentServiceImplTest {
+public class JPAStudentServiceImplTest extends AbstractStudentServiceImplTest {
 
     /** Service retrieved by the Weld container. */
     @Inject
-    @SoapImpl
+    @JPAImpl
     private StudentService mService;
 
     @Override

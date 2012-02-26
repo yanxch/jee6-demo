@@ -12,11 +12,11 @@ import ch.demo.helper.WeldJUnit4Runner;
  * @author hostettler
  */
 @RunWith(WeldJUnit4Runner.class)
-public class RestStudentServiceImplTest extends AbstractStudentServiceImplTest {
+public class WSStudentServiceImplTest extends AbstractStudentServiceImplTest {
 
     /** Service retrieved by the Weld container. */
     @Inject
-    @RestImpl
+    @WebServiceImpl
     private StudentService mService;
 
     @Override
