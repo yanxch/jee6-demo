@@ -9,9 +9,9 @@ import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
 
-import ch.demo.business.dom.Student;
 import ch.demo.business.interceptors.Benchmarkable;
 import ch.demo.business.service.StudentService;
+import ch.demo.dom.Student;
 
 /**
  * 

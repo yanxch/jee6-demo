@@ -1,8 +1,9 @@
 package ch.demo.business.service;
 
+import java.io.Serializable;
 import java.util.List;
 
-import ch.demo.business.dom.Student;
+import ch.demo.dom.Student;
 
 /**
  * Defines the contract of the student service.
@@ -10,7 +11,7 @@ import ch.demo.business.dom.Student;
  * @author hostettler
  * 
  */
-public interface StudentService {
+public interface StudentService extends Serializable {
 
     /** The domain of the grades. */
     int TOTAL = 100;
