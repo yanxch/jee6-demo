@@ -8,8 +8,6 @@ import java.util.Stack;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
-import javax.enterprise.inject.Produces;
-import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,11 +42,14 @@ public class EntityManagerStore implements Serializable {
     private ThreadLocal<Stack<EntityManager>> mEmStackThreadLocal = new ThreadLocal<Stack<EntityManager>>();
 
     /**
-     * Observes the ContainerInitiaized event. 
-     * @param containerInitialized event to look for.
+     * Observes the ContainerInitiaized event.
+     * 
+     * @param containerInitialized
+     *            event to look for.
      */
     public void init(@Observes final ContainerInitialized containerInitialized) {
-        mEntityManagerFactory = Persistence.createEntityManagerFactory("JEE6Demo-Test-Persistence");
+        mEntityManagerFactory = Persistence
+                .createEntityManagerFactory("JEE6Demo-Test-Persistence");
     }
 
     /**
@@ -61,7 +62,7 @@ public class EntityManagerStore implements Serializable {
      *         found
      */
     public EntityManager get() {
-        mLogger.debug("Getting the current entity manager");
+        mLogger.info("Getting the current entity manager");
         final Stack<EntityManager> entityManagerStack = mEmStackThreadLocal
                 .get();
         if (entityManagerStack == null || entityManagerStack.isEmpty()) {
@@ -84,14 +85,15 @@ public class EntityManagerStore implements Serializable {
      * @return the created entity manager
      */
     public EntityManager createAndRegister() {
-        mLogger.debug("Creating and registering an entity manager");
+        mLogger.info("Creating and registering an entity manager");
         Stack<EntityManager> entityManagerStack = mEmStackThreadLocal.get();
         if (entityManagerStack == null) {
             entityManagerStack = new Stack<EntityManager>();
             mEmStackThreadLocal.set(entityManagerStack);
         }
 
-        final EntityManager entityManager = mEntityManagerFactory.createEntityManager();
+        final EntityManager entityManager = mEntityManagerFactory
+                .createEntityManager();
         entityManagerStack.push(entityManager);
         return entityManager;
     }
@@ -104,7 +106,7 @@ public class EntityManagerStore implements Serializable {
      *            - the entity manager to remove
      */
     public void unregister(final EntityManager entityManager) {
-        mLogger.debug("Unregistering an entity manager");
+        mLogger.info("Unregistering an entity manager");
         final Stack<EntityManager> entityManagerStack = mEmStackThreadLocal
                 .get();
         if (entityManagerStack == null || entityManagerStack.isEmpty()) {
@@ -117,18 +119,6 @@ public class EntityManagerStore implements Serializable {
                     "Removing of entity manager failed. Your entity manager was not found.");
         }
         entityManagerStack.pop();
-    }
-
-    /**
-     * Produces an instance of an entity manager for the given injection point.
-     * 
-     * @param injectionPoint
-     *            to use
-     * @return a logger
-     */
-    @Produces
-    public EntityManager getEntityManager(final InjectionPoint injectionPoint) {
-        return this.get();
     }
 
 }

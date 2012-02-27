@@ -10,6 +10,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.slf4j.Logger;
 
@@ -47,6 +49,7 @@ public class StudentServiceJPAImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public List<Student> getAll() {
         CriteriaBuilder qb = mEntityManager.getCriteriaBuilder();
         CriteriaQuery<Student> c = qb.createQuery(Student.class);
@@ -55,6 +58,7 @@ public class StudentServiceJPAImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public int getNbStudent() {
         return getAll().size();
     }
@@ -66,6 +70,7 @@ public class StudentServiceJPAImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public int[] getDistribution(final int n) {
         int[] grades = new int[n];
 
@@ -76,9 +81,13 @@ public class StudentServiceJPAImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public Student getStudentById(final String id) {
         CriteriaBuilder qb = mEntityManager.getCriteriaBuilder();
         CriteriaQuery<Student> c = qb.createQuery(Student.class);
+        Root<Student> from = c.from(Student.class);
+        Predicate condition = qb.equal(from.get("mLastName"), id);
+        c.where(condition);
         TypedQuery<Student> query = mEntityManager.createQuery(c);
         return query.getSingleResult();
     }
