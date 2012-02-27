@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,6 +14,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import org.slf4j.Logger;
 
 import ch.demo.dom.Student;
+import ch.demo.helpers.jpa.Transactional;
 
 /**
  * 
@@ -35,6 +35,7 @@ public class StudentServiceJPAImpl implements StudentService {
     private static final long serialVersionUID = 1386508985359072399L;
 
     /** The entity manager that manages the persistence. */
+    //The first line is for compatibility with JEE servers
     @PersistenceContext(unitName = "JEE6Demo-Test-Persitence")
     @Inject
     private EntityManager mEntityManager;
@@ -59,11 +60,9 @@ public class StudentServiceJPAImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public void add(final Student student) {
-        EntityTransaction trx = mEntityManager.getTransaction();
-        trx.begin();
         mEntityManager.persist(student);
-        trx.commit();
     }
 
     @Override
