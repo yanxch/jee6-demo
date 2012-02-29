@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
+import javax.persistence.NoResultException;
 
 import ch.demo.business.interceptors.Benchmarkable;
 import ch.demo.business.service.StudentService;
@@ -80,6 +81,16 @@ public class StudentServiceMockImpl implements StudentService, Serializable {
     public Student getStudentById(final String id) {
         for (Student s : this.getAll()) {
             if (s.getKey().equals(id)) {
+                return s;
+            }
+        }
+        throw new NoResultException();
+    }
+    
+    @Override
+    public Student getStudentByLastName(final String lastname) {
+        for (Student s : this.getAll()) {
+            if (s.getLastName().equals(lastname)) {
                 return s;
             }
         }

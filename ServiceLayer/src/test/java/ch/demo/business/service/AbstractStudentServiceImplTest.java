@@ -30,8 +30,7 @@ public abstract class AbstractStudentServiceImplTest {
         Student s = new Student("Hostettler", "Steve", new Date());
         s.setPhoneNumber(new PhoneNumber(0, 0, 0));
         for (Discipline d : Discipline.values()) {
-            Grade g = new Grade(d);
-            g.setGrade(1);
+            Grade g = new Grade(d, 10);
             s.getGrades().add(g);
         }
 
@@ -74,8 +73,7 @@ public abstract class AbstractStudentServiceImplTest {
      */
     @Test
     public void testExistingStudent() {
-        Student s = new Student("Hostettler", "Steve", new Date());
-        Assert.assertNotNull(getService().getStudentById(s.getKey()));
+        Assert.assertNotNull(getService().getStudentByLastName("Hostettler"));
     }
 
     /**

@@ -28,6 +28,12 @@ public class StudentPersistenceTest extends AbstractEntityTest {
     @Test
     public void createStudent() throws Exception {
         Student student = new Student("Lion Hearth", "Richard", new Date());
+        student.setPhoneNumber(new PhoneNumber(0, 0, 0));
+        for (Discipline d : Discipline.values()) {
+            Grade g = new Grade(d, 10);
+            student.getGrades().add(g);
+        }
+        
         getTrx().begin();
         getEntityManager().persist(student);
         getTrx().commit();

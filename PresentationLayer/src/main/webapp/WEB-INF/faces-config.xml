@@ -64,7 +64,7 @@
           <description>A Converter for phone number</description>
           <converter-id>PhoneNumberConverter</converter-id>
           <converter-class>
-              ch.demo.web.PhoneNumberConverter
+              ch.demo.web.FacesPhoneNumberConverter
           </converter-class>
    </converter>
 

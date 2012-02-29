@@ -7,13 +7,11 @@ import java.io.Serializable;
 import java.util.Stack;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.jboss.weld.environment.se.events.ContainerInitialized;
 import org.slf4j.Logger;
 
 /**
@@ -42,12 +40,9 @@ public class EntityManagerStore implements Serializable {
     private ThreadLocal<Stack<EntityManager>> mEmStackThreadLocal = new ThreadLocal<Stack<EntityManager>>();
 
     /**
-     * Observes the ContainerInitiaized event.
-     * 
-     * @param containerInitialized
-     *            event to look for.
+     * Produces a new event manager factory.
      */
-    public void init(@Observes final ContainerInitialized containerInitialized) {
+    public EntityManagerStore() {
         mEntityManagerFactory = Persistence
                 .createEntityManagerFactory("JEE6Demo-Test-Persistence");
     }

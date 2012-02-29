@@ -3,8 +3,6 @@
  */
 package ch.demo.web;
 
-import java.util.Formatter;
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,7 +20,7 @@ import ch.demo.dom.PhoneNumber;
  * @author hostettler
  * 
  */
-public class PhoneNumberConverter implements Converter {
+public class FacesPhoneNumberConverter implements Converter {
 
 	/** The Phone number regular expression. */
 	private static final String PHONE_NUMBER_PATTERN = "^[0-9][0-9]-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$";
@@ -32,7 +30,7 @@ public class PhoneNumberConverter implements Converter {
 	/**
 	 * Default constructor.
 	 */
-	public PhoneNumberConverter() {
+	public FacesPhoneNumberConverter() {
 	}
 
 	/**
@@ -58,41 +56,11 @@ public class PhoneNumberConverter implements Converter {
 			throw new ConverterException(message);
 		}
 
-		boolean conversionError = false;
-
-		int hyphenCount = 0;
-		StringTokenizer hyphenTokenizer = new StringTokenizer(value, "-");
-
-		Integer countryCode = null;
-		Integer areaCode = null;
-		Long number = null;
-
-		while (hyphenTokenizer.hasMoreTokens()) {
-			String token = hyphenTokenizer.nextToken();
-			try {
-				if (hyphenCount == 0) {
-					countryCode = Integer.parseInt(token);
-				}
-
-				if (hyphenCount == 1) {
-					areaCode = Integer.parseInt(token);
-				}
-
-				if (hyphenCount == 2) {
-					number = Long.parseLong(token);
-				}
-				hyphenCount++;
-			} catch (Exception exception) {
-				conversionError = true;
-			}
-		}
-
 		PhoneNumber phoneNumber = null;
-
-		if (conversionError || (hyphenCount != 3)) {
-			throw new ConverterException();
-		} else {
-			phoneNumber = new PhoneNumber(countryCode, areaCode, number);
+		try {
+			phoneNumber = PhoneNumber.getAsObject(value);
+		} catch (Exception e) {
+			throw new ConverterException(e);
 		}
 
 		return phoneNumber;
@@ -108,12 +76,8 @@ public class PhoneNumberConverter implements Converter {
 	 * @return a string representation for the PhoneNumber object.
 	 */
 	public String getAsString(final FacesContext context, final UIComponent component, final Object value) {
-		PhoneNumber phoneNumber = null;
 		if (value instanceof PhoneNumber) {
-			phoneNumber = (PhoneNumber) value;
-			Formatter f = new Formatter(new StringBuilder());
-			return f.format("+%02d-%04d-%04d", phoneNumber.getCountryCode(), phoneNumber.getAreaCode(),
-					phoneNumber.getNumber()).toString();
+			return PhoneNumber.getAsString((PhoneNumber) value);
 		}
 		return "";
 	}

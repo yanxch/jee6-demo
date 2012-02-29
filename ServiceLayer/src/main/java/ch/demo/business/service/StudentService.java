@@ -48,5 +48,12 @@ public interface StudentService extends Serializable {
      * @return the student with the given id.
      */
     Student getStudentById(String id);
+    
+    /**
+     * @param lastname
+     *            of the student
+     * @return the student with the given lastname.
+     */
+    Student getStudentByLastName(String lastname);
 
 }

@@ -86,9 +86,22 @@ public class StudentServiceJPAImpl implements StudentService {
         CriteriaBuilder qb = mEntityManager.getCriteriaBuilder();
         CriteriaQuery<Student> c = qb.createQuery(Student.class);
         Root<Student> from = c.from(Student.class);
-        Predicate condition = qb.equal(from.get("mLastName"), id);
+        Predicate condition = qb.equal(from.get("mId"), id);
         c.where(condition);
         TypedQuery<Student> query = mEntityManager.createQuery(c);
         return query.getSingleResult();
     }
+
+    @Override
+    @Transactional
+    public Student getStudentByLastName(final String lastname) {
+        CriteriaBuilder qb = mEntityManager.getCriteriaBuilder();
+        CriteriaQuery<Student> c = qb.createQuery(Student.class);
+        Root<Student> from = c.from(Student.class);
+        Predicate condition = qb.equal(from.get("mLastName"), lastname);
+        c.where(condition);
+        TypedQuery<Student> query = mEntityManager.createQuery(c);
+        return query.getSingleResult();
+    }
+
 }

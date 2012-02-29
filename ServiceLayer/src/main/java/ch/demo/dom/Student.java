@@ -5,12 +5,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.eclipse.persistence.annotations.Convert;
+import org.eclipse.persistence.annotations.Converter;
+
+import ch.demo.dom.jpa.JPAPhoneNumberConverter;
 
 /**
  * Models a student.
@@ -24,8 +34,13 @@ public class Student implements Serializable {
     /** The serial-id. */
     private static final long serialVersionUID = -6146935825517747043L;
 
-    /** The student last name. */
+    /** The unique id. */
     @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long mId;
+
+    /** The student last name. */
     @Column(name = "LAST_NAME", length = 35)
     private String mLastName;
 
@@ -39,20 +54,22 @@ public class Student implements Serializable {
     private Date mBirthDate;
 
     /** The student phone number. */
-    @Column(name = "PHONE_NUMBER")    
+    @Column(name = "PHONE_NUMBER")
+    @Converter(name = "phoneConverter", converterClass = JPAPhoneNumberConverter.class)
+    @Convert("phoneConverter")
     private PhoneNumber mPhoneNumber;
 
     /** The set of grades of the student. */
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "STUDENTS_ID", nullable = true)
     private List<Grade> mGrades;
 
     /**
      * Empty (default) constructor.
      */
     public Student() {
+        // this.mGrades = new HashMap<Discipline, Grade>();
         this.mGrades = new ArrayList<Grade>();
-        for (Discipline discipline : Discipline.values()) {
-            this.mGrades.add(new Grade(discipline));
-        }
     }
 
     /**
@@ -92,7 +109,11 @@ public class Student implements Serializable {
      * @return an unique identifier
      */
     public String getKey() {
-        return String.valueOf(hashCode());
+        if (this.mId != null) {
+            return String.valueOf(this.mId);
+        } else {
+            return String.valueOf(this.hashCode());    
+        }
     }
 
     /**
@@ -188,7 +209,8 @@ public class Student implements Serializable {
         if (this.mLastName == null) {
             return -1;
         } else {
-            return this.mLastName.hashCode();
+            return this.mLastName.hashCode() ^ this.mFirstName.hashCode()
+                    ^ this.mBirthDate.hashCode();
         }
     }
 
@@ -198,7 +220,9 @@ public class Student implements Serializable {
             return true;
         }
         if (obj instanceof Student) {
-            if (this.mLastName.equals(((Student) obj).mLastName)) {
+            if (this.mLastName.equals(((Student) obj).mLastName)
+                    && this.mFirstName.equals(((Student) obj).mFirstName)
+                    && this.mBirthDate.equals(((Student) obj).mBirthDate)) {
                 return true;
             }
         }

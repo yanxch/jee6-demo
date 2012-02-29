@@ -62,8 +62,8 @@
 
          <h:panelGroup>
             <p:fieldset legend="#{msgs.gradePerDiscipline}" toggleable="false">
-               <p:dataTable var="grade"
-                  value="#{manageStudentRegistration.student.grades}">
+               <p:dataTable var="grade" value="#{manageStudentRegistration.student.grades}">
+                  
                   <p:column sortBy="grade.discipline">
                      <f:facet name="header">
                         <h:outputText value="#{msgs.discipline}" />
@@ -83,6 +83,7 @@
                      </h:inputText>
                      <p:message id="msgForGrade" for="grade" />
                   </p:column>
+
                </p:dataTable>
             </p:fieldset>
          </h:panelGroup>
@@ -90,11 +91,11 @@
          <h:panelGroup>
             <h:panelGrid columns="3" style="width: 100%;"
                columnClasses="alignleft, aligncenter, alignright">
-               <p:commandButton image="ui-icon ui-icon-close" immediate="true"
+               <p:commandButton icon="ui-icon ui-icon-close" immediate="true"
                   style="width:120px" value="Annuler" action="cancel" ajax="false" />
-               <p:commandButton image="ui-icon ui-icon-refresh" immediate="true"
+               <p:commandButton icon="ui-icon ui-icon-refresh" immediate="true"
                   style="width:120px" value="Effacer" action="failure" ajax="false" />
-               <p:commandButton image="ui-icon ui-icon-disk" style="width:120px"
+               <p:commandButton icon="ui-icon ui-icon-disk" style="width:120px"
                   value="Enregistrer" action="#{manageStudentRegistration.add}"
                   ajax="false" />
             </h:panelGrid>

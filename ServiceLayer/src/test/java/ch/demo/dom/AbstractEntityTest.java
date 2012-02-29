@@ -48,7 +48,7 @@ public abstract class AbstractEntityTest {
     public static void initEntityManager() throws Exception {
         // Get the entity manager for the tests.
         mEmf = Persistence
-                .createEntityManagerFactory("JEE6Demo-Test-Persitence");
+                .createEntityManagerFactory("JEE6Demo-Test-Persistence");
         mEntityManager = mEmf.createEntityManager();
 
         // Load the test datasets in the database
