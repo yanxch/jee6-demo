@@ -76,7 +76,6 @@
                         <h:outputText value="#{msgs.grade}" />
                      </f:facet>
                      <h:inputText id="grade" value="#{grade.grade}">
-                        <f:validateRequired />
                         <f:validateLongRange minimum="0" maximum="100" />
                         <f:convertNumber minFractionDigits="2" />
                         <p:ajax event="blur" update="msgForGrade" />
@@ -92,7 +91,7 @@
             <h:panelGrid columns="3" style="width: 100%;"
                columnClasses="alignleft, aligncenter, alignright">
                <p:commandButton icon="ui-icon ui-icon-close" immediate="true"
-                  style="width:120px" value="Annuler" action="cancel" ajax="false" />
+                  style="width:120px" value="Annuler" action="#{manageStudentRegistration.cancel}" ajax="false" />
                <p:commandButton icon="ui-icon ui-icon-refresh" immediate="true"
                   style="width:120px" value="Effacer" action="failure" ajax="false" />
                <p:commandButton icon="ui-icon ui-icon-disk" style="width:120px"
