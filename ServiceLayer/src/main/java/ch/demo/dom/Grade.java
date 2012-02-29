@@ -32,7 +32,7 @@ public class Grade implements Serializable {
     private Discipline mDiscipline;
 
     /** The actual grade. */
-    @Column(name = "GRADE", nullable = false)
+    @Column(name = "GRADE", nullable = true)
     private Integer mGrade;
 
     /**

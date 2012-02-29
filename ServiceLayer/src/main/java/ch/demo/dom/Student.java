@@ -68,8 +68,12 @@ public class Student implements Serializable {
      * Empty (default) constructor.
      */
     public Student() {
-        // this.mGrades = new HashMap<Discipline, Grade>();
         this.mGrades = new ArrayList<Grade>();
+        for (Discipline d : Discipline.values()) {
+            Grade g = new Grade(d);
+            this.mGrades.add(g);
+        }
+        
     }
 
     /**
