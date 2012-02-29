@@ -76,15 +76,15 @@ public class ManageStudentRegistration implements Serializable {
 	}
 
 	/**
-	 * Action that forwards to the data list.
+	 * Action that cancel the current registration and redirect to the data list.
 	 * 
 	 * @return the next action to perform (see faces-config)
 	 */
-	public String toList() {
-		mLogger.debug("list");
+	public String cancel() {
+		mLogger.debug("cancel");
 		// Ends the flow
 		this.mConversation.end();
-		return "list";
+		return "cancel";
 	}
 
 	/**
