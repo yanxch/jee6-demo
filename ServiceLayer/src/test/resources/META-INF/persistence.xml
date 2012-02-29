@@ -6,30 +6,29 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>ch.demo.dom.Student</class>
         <class>ch.demo.dom.Grade</class>
-<!--         <properties> -->
-<!--             <property name="eclipselink.target-database" value="DERBY" /> -->
-<!--             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" /> -->
-<!--             <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:StudentsDB;create=true" /> -->
-<!--             <property name="javax.persistence.jdbc.user" value="" /> -->
-<!--             <property name="javax.persistence.jdbc.password" value="" /> -->
-<!--             <property name="eclipselink.ddl-generation" value="drop-and-create-tables" /> -->
-<!--             <property name="eclipselink.logging.level" value="FINE" /> -->
-<!--         </properties> -->
         <properties>
-            <property name="eclipselink.target-database" value="MYSQL" />
             <property name="eclipselink.jdbc.read-connections.min" value="3"/>
             <property name="eclipselink.jdbc.read-connections.max" value="5"/>
             <property name="eclipselink.jdbc.read-connections.min" value="2"/>
             <property name="eclipselink.jdbc.write-connections.max" value="3"/>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Students_DB" />
-            <property name="javax.persistence.jdbc.user" value="root" />
-            <property name="javax.persistence.jdbc.password" value="" />
             <property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
             <property name="eclipselink.ddl-generation.output-mode" value="both"/>
             <property name="eclipselink.create-ddl-jdbc-file-name" value="createStudentsDB.sql"/>
             <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropStudentsDB.sql"/>  
             <property name="eclipselink.logging.level" value="FINEST" />
+
+            <property name="eclipselink.target-database" value="DERBY" />
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:StudentsDB;create=true" />
+            <property name="javax.persistence.jdbc.user" value="" />
+            <property name="javax.persistence.jdbc.password" value="" />
+                   
+<!--             <property name="eclipselink.target-database" value="MYSQL" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Students_DB" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="" /> -->
+
         </properties>        
     </persistence-unit>
 </persistence>
