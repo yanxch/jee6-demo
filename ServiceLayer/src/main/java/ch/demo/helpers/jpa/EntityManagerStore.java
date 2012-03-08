@@ -43,8 +43,8 @@ public class EntityManagerStore implements Serializable {
      * Produces a new event manager factory.
      */
     public EntityManagerStore() {
-        mEntityManagerFactory = Persistence
-                .createEntityManagerFactory("JEE6Demo-Test-Persistence");
+        setEntityManagerFactory(Persistence
+                .createEntityManagerFactory("JEE6Demo-Persistence"));
     }
 
     /**
@@ -116,4 +116,11 @@ public class EntityManagerStore implements Serializable {
         entityManagerStack.pop();
     }
 
+    /**
+     * @param entityManagerFactory
+     *            the entityManagerFactory to set
+     */
+    protected void setEntityManagerFactory(final EntityManagerFactory entityManagerFactory) {
+        mEntityManagerFactory = entityManagerFactory;
+    }
 }

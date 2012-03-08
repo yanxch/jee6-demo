@@ -42,6 +42,16 @@ public abstract class AbstractStudentServiceImplTest {
     }
 
     /**
+     * Tests the retrieval of all the students.
+     */
+    @Test
+    public void testAll() {
+        for (Student s : getService().getAll()) {
+            System.out.println(s);
+        }
+    }
+
+    /**
      * Tests the distribution of the grades among students.
      */
     @Test

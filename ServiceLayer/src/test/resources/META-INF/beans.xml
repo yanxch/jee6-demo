@@ -6,5 +6,6 @@
 	</interceptors>
 	<alternatives>
 		<class>ch.demo.business.service.mock.StudentServiceMockImpl</class>
+		<class>ch.demo.business.service.EntityManagerStore4Test</class>
 	</alternatives>
 </beans> 

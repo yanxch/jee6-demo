@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="1.0"
     xmlns="http://java.sun.com/xml/ns/persistence">
-    <persistence-unit name="JEE6Demo-Test-Persistence"
+    <persistence-unit name="JEE6Demo-Persistence"
         transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>ch.demo.dom.Student</class>

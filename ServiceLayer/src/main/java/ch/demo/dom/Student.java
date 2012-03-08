@@ -232,4 +232,17 @@ public class Student implements Serializable {
         }
         return false;
     }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "Student [mId=" + mId + ", mLastName=" + mLastName
+                + ", mFirstName=" + mFirstName + ", mBirthDate=" + mBirthDate
+                + ", mPhoneNumber=" + mPhoneNumber + ", mGrades=" + mGrades
+                + "]";
+    }
+    
+   
 }
