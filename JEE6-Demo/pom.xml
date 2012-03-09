@@ -10,12 +10,20 @@
 	<modules>
 		<module>../PresentationLayer</module>
 		<module>../ServiceLayer</module>
-		<module>../DataAccessLayer</module>
 	</modules>
 
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.eclipse.m2e</groupId>
 				<artifactId>lifecycle-mapping</artifactId>
