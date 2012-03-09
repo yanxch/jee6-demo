@@ -10,7 +10,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import org.slf4j.Logger;
 
@@ -34,6 +33,7 @@ public class EntityManagerStore implements Serializable {
     private transient Logger mLogger;
 
     /** The factory. */
+    @Inject
     private EntityManagerFactory mEntityManagerFactory;
 
     /** A thread local container for the entity managers. */
@@ -43,8 +43,6 @@ public class EntityManagerStore implements Serializable {
      * Produces a new event manager factory.
      */
     public EntityManagerStore() {
-        setEntityManagerFactory(Persistence
-                .createEntityManagerFactory("JEE6Demo-Persistence"));
     }
 
     /**
@@ -116,11 +114,4 @@ public class EntityManagerStore implements Serializable {
         entityManagerStack.pop();
     }
 
-    /**
-     * @param entityManagerFactory
-     *            the entityManagerFactory to set
-     */
-    protected void setEntityManagerFactory(final EntityManagerFactory entityManagerFactory) {
-        mEntityManagerFactory = entityManagerFactory;
-    }
 }

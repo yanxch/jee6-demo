@@ -1,0 +1,445 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Service Layer 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ ServiceLayer ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 5 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.0.2:compile (default-compile) @ ServiceLayer ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.4.3:testResources (default-testResources) @ ServiceLayer ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 6 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:2.0.2:testCompile (default-testCompile) @ ServiceLayer ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.7.2:test (default-test) @ ServiceLayer ---
+[INFO] Surefire report directory: /Users/hostettler/Documents/workspaces/ifage/ServiceLayer/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running ch.demo.business.service.JPAStudentServiceImplTest
+28 [main] INFO org.jboss.weld.Version - WELD-000900 1.1.5 (Final)
+159 [main] INFO org.jboss.weld.Bootstrap - WELD-000101 Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+512 [main] WARN org.jboss.interceptor.util.InterceptionTypeRegistry - Class 'javax.ejb.PostActivate' not found, interception based on it is not enabled
+512 [main] WARN org.jboss.interceptor.util.InterceptionTypeRegistry - Class 'javax.ejb.PrePassivate' not found, interception based on it is not enabled
+1034 [main] INFO ch.demo.business.service.StudentServiceJPAImpl - Use the JPA implementation
+[EL Config]: 2012-03-08 15:17:52.541--ServerSession(1358138608)--Thread(Thread[main,5,main])--The access type for the persistent class [class ch.demo.dom.Grade] is set to [FIELD].
+[EL Config]: 2012-03-08 15:17:52.548--ServerSession(1358138608)--Thread(Thread[main,5,main])--The access type for the persistent class [class ch.demo.dom.Student] is set to [FIELD].
+[EL Config]: 2012-03-08 15:17:52.551--ServerSession(1358138608)--Thread(Thread[main,5,main])--The target entity (reference) class for the one to many mapping element [field mGrades] is being defaulted to: class ch.demo.dom.Grade.
+[EL Config]: 2012-03-08 15:17:52.552--ServerSession(1358138608)--Thread(Thread[main,5,main])--The alias name for the entity class [class ch.demo.dom.Grade] is being defaulted to: Grade.
+[EL Config]: 2012-03-08 15:17:52.553--ServerSession(1358138608)--Thread(Thread[main,5,main])--The alias name for the entity class [class ch.demo.dom.Student] is being defaulted to: Student.
+[EL Config]: 2012-03-08 15:17:52.554--ServerSession(1358138608)--Thread(Thread[main,5,main])--Ignoring default serialization on element [field mPhoneNumber] within entity class [class ch.demo.dom.Student] since a @Convert is specified.
+[EL Config]: 2012-03-08 15:17:52.555--ServerSession(1358138608)--Thread(Thread[main,5,main])--The primary key column name for the mapping element [field mGrades] is being defaulted to: ID.
+1065 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Creating and registering an entity manager
+[EL Info]: 2012-03-08 15:17:53.031--ServerSession(1358138608)--Thread(Thread[main,5,main])--EclipseLink, version: Eclipse Persistence Services - 2.0.0.v20091127-r5931
+[EL Config]: 2012-03-08 15:17:53.038--ServerSession(1358138608)--Connection(1206507953)--Thread(Thread[main,5,main])--connecting(DatabaseLogin(
+	platform=>DerbyPlatform
+	user name=> ""
+	datasource URL=> "jdbc:derby:memory:StudentsDB;create=true"
+))
+[EL Config]: 2012-03-08 15:17:53.784--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--Connected: jdbc:derby:memory:StudentsDB
+	User: APP
+	Database: Apache Derby  Version: 10.8.2.2 - (1181258)
+	Driver: Apache Derby Embedded JDBC Driver  Version: 10.8.2.2 - (1181258)
+[EL Config]: 2012-03-08 15:17:53.785--ServerSession(1358138608)--Connection(617044469)--Thread(Thread[main,5,main])--connecting(DatabaseLogin(
+	platform=>DerbyPlatform
+	user name=> ""
+	datasource URL=> "jdbc:derby:memory:StudentsDB;create=true"
+))
+[EL Config]: 2012-03-08 15:17:53.787--ServerSession(1358138608)--Connection(70997657)--Thread(Thread[main,5,main])--Connected: jdbc:derby:memory:StudentsDB
+	User: APP
+	Database: Apache Derby  Version: 10.8.2.2 - (1181258)
+	Driver: Apache Derby Embedded JDBC Driver  Version: 10.8.2.2 - (1181258)
+[EL Info]: 2012-03-08 15:17:53.837--ServerSession(1358138608)--Thread(Thread[main,5,main])--file:/Users/hostettler/Documents/workspaces/ifage/ServiceLayer/target/test-classes/_JEE6Demo-Persistence login successful
+[EL Fine]: 2012-03-08 15:17:53.853--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--ALTER TABLE GRADES DROP CONSTRAINT GRADES_STUDENTS_ID
+[EL Fine]: 2012-03-08 15:17:53.936--ServerSession(1358138608)--Thread(Thread[main,5,main])--VALUES(1)
+[EL Warning]: 2012-03-08 15:17:54.017--ServerSession(1358138608)--Thread(Thread[main,5,main])--Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.0.0.v20091127-r5931): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLSyntaxErrorException: 'ALTER TABLE' cannot be performed on 'GRADES' because it does not exist.
+Error Code: 30000
+Call: ALTER TABLE GRADES DROP CONSTRAINT GRADES_STUDENTS_ID
+Query: DataModifyQuery(sql="ALTER TABLE GRADES DROP CONSTRAINT GRADES_STUDENTS_ID")
+[EL Fine]: 2012-03-08 15:17:54.02--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--DROP TABLE STUDENTS
+[EL Fine]: 2012-03-08 15:17:54.022--ServerSession(1358138608)--Thread(Thread[main,5,main])--VALUES(1)
+[EL Warning]: 2012-03-08 15:17:54.023--ServerSession(1358138608)--Thread(Thread[main,5,main])--Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.0.0.v20091127-r5931): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLSyntaxErrorException: 'DROP TABLE' cannot be performed on 'STUDENTS' because it does not exist.
+Error Code: 30000
+Call: DROP TABLE STUDENTS
+Query: DataModifyQuery(sql="DROP TABLE STUDENTS")
+[EL Fine]: 2012-03-08 15:17:54.023--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--CREATE TABLE STUDENTS (ID BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL, FIRST_NAME VARCHAR(35) NOT NULL, PHONE_NUMBER VARCHAR(255), BIRTH_DATE DATE NOT NULL, LAST_NAME VARCHAR(35), PRIMARY KEY (ID))
+[EL Fine]: 2012-03-08 15:17:54.072--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--DROP TABLE GRADES
+[EL Fine]: 2012-03-08 15:17:54.074--ServerSession(1358138608)--Thread(Thread[main,5,main])--VALUES(1)
+[EL Warning]: 2012-03-08 15:17:54.074--ServerSession(1358138608)--Thread(Thread[main,5,main])--Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.0.0.v20091127-r5931): org.eclipse.persistence.exceptions.DatabaseException
+Internal Exception: java.sql.SQLSyntaxErrorException: 'DROP TABLE' cannot be performed on 'GRADES' because it does not exist.
+Error Code: 30000
+Call: DROP TABLE GRADES
+Query: DataModifyQuery(sql="DROP TABLE GRADES")
+[EL Fine]: 2012-03-08 15:17:54.074--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--CREATE TABLE GRADES (ID BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL, DISCIPLINE INTEGER NOT NULL, GRADE INTEGER, STUDENTS_ID BIGINT, PRIMARY KEY (ID))
+[EL Fine]: 2012-03-08 15:17:54.091--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--ALTER TABLE GRADES ADD CONSTRAINT GRADES_STUDENTS_ID FOREIGN KEY (STUDENTS_ID) REFERENCES STUDENTS (ID)
+2677 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+2690 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+[EL Fine]: 2012-03-08 15:17:54.202--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--SELECT ID, FIRST_NAME, PHONE_NUMBER, BIRTH_DATE, LAST_NAME FROM STUDENTS
+2738 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Unregistering an entity manager
+2738 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Creating and registering an entity manager
+2739 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+[EL Fine]: 2012-03-08 15:17:54.234--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO STUDENTS (FIRST_NAME, PHONE_NUMBER, BIRTH_DATE, LAST_NAME) VALUES (?, ?, ?, ?)
+	bind => [Steve, +00-0000-0000, 2012-03-08, Hostettler]
+[EL Fine]: 2012-03-08 15:17:54.262--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.268--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [5, null]
+[EL Fine]: 2012-03-08 15:17:54.278--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.278--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [0, null]
+[EL Fine]: 2012-03-08 15:17:54.279--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.28--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [5, 10]
+[EL Fine]: 2012-03-08 15:17:54.281--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.282--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [0, 10]
+[EL Fine]: 2012-03-08 15:17:54.283--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.283--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [1, 10]
+[EL Fine]: 2012-03-08 15:17:54.285--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.285--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [3, null]
+[EL Fine]: 2012-03-08 15:17:54.286--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.287--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [2, 10]
+[EL Fine]: 2012-03-08 15:17:54.288--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.288--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [3, 10]
+[EL Fine]: 2012-03-08 15:17:54.289--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.29--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [6, null]
+[EL Fine]: 2012-03-08 15:17:54.291--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.291--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [2, null]
+[EL Fine]: 2012-03-08 15:17:54.292--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.293--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [6, 10]
+[EL Fine]: 2012-03-08 15:17:54.293--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.294--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [4, 10]
+[EL Fine]: 2012-03-08 15:17:54.295--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.295--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [1, null]
+[EL Fine]: 2012-03-08 15:17:54.296--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.296--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--INSERT INTO GRADES (DISCIPLINE, GRADE) VALUES (?, ?)
+	bind => [4, null]
+[EL Fine]: 2012-03-08 15:17:54.297--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--values IDENTITY_VAL_LOCAL()
+[EL Fine]: 2012-03-08 15:17:54.299--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 2]
+[EL Fine]: 2012-03-08 15:17:54.324--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 13]
+[EL Fine]: 2012-03-08 15:17:54.325--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 10]
+[EL Fine]: 2012-03-08 15:17:54.325--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 6]
+[EL Fine]: 2012-03-08 15:17:54.326--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 14]
+[EL Fine]: 2012-03-08 15:17:54.327--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 1]
+[EL Fine]: 2012-03-08 15:17:54.328--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 9]
+[EL Fine]: 2012-03-08 15:17:54.329--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 4]
+[EL Fine]: 2012-03-08 15:17:54.33--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 5]
+[EL Fine]: 2012-03-08 15:17:54.331--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 7]
+[EL Fine]: 2012-03-08 15:17:54.331--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 8]
+[EL Fine]: 2012-03-08 15:17:54.332--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 12]
+[EL Fine]: 2012-03-08 15:17:54.333--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 3]
+[EL Fine]: 2012-03-08 15:17:54.334--ClientSession(756783556)--Connection(70997657)--Thread(Thread[main,5,main])--UPDATE GRADES SET STUDENTS_ID = ? WHERE (ID = ?)
+	bind => [1, 11]
+2854 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Unregistering an entity manager
+2854 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Creating and registering an entity manager
+2854 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+2854 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+[EL Fine]: 2012-03-08 15:17:54.346--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--SELECT ID, FIRST_NAME, PHONE_NUMBER, BIRTH_DATE, LAST_NAME FROM STUDENTS
+2858 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Unregistering an entity manager
+2859 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Creating and registering an entity manager
+2859 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+2870 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+[EL Fine]: 2012-03-08 15:17:54.362--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--SELECT ID, FIRST_NAME, PHONE_NUMBER, BIRTH_DATE, LAST_NAME FROM STUDENTS WHERE (ID = ?)
+	bind => [1]
+2877 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Unregistering an entity manager
+2880 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Creating and registering an entity manager
+2880 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+2880 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+[EL Fine]: 2012-03-08 15:17:54.371--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--SELECT ID, FIRST_NAME, PHONE_NUMBER, BIRTH_DATE, LAST_NAME FROM STUDENTS
+2882 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Unregistering an entity manager
+Student [mId=1, mLastName=Hostettler, mFirstName=Steve, mBirthDate=Thu Mar 08 15:17:54 CET 2012, mPhoneNumber=ch.demo.dom.PhoneNumber@48cc258a, mGrades={IndirectList: not instantiated}]
+2882 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Creating and registering an entity manager
+2882 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+2882 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+[EL Fine]: 2012-03-08 15:17:54.374--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--SELECT ID, FIRST_NAME, PHONE_NUMBER, BIRTH_DATE, LAST_NAME FROM STUDENTS
+2886 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Unregistering an entity manager
+2886 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Creating and registering an entity manager
+2886 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+2886 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+[EL Fine]: 2012-03-08 15:17:54.378--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--SELECT ID, FIRST_NAME, PHONE_NUMBER, BIRTH_DATE, LAST_NAME FROM STUDENTS
+2888 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Unregistering an entity manager
+2888 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Creating and registering an entity manager
+2888 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+2888 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+[EL Fine]: 2012-03-08 15:17:54.38--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--SELECT ID, FIRST_NAME, PHONE_NUMBER, BIRTH_DATE, LAST_NAME FROM STUDENTS WHERE (ID = ?)
+	bind => [2000371260]
+2892 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Unregistering an entity manager
+getSingleResult() did not retrieve any entities.
+2893 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Creating and registering an entity manager
+2893 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+2893 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Getting the current entity manager
+[EL Fine]: 2012-03-08 15:17:54.385--ServerSession(1358138608)--Connection(1364143063)--Thread(Thread[main,5,main])--SELECT ID, FIRST_NAME, PHONE_NUMBER, BIRTH_DATE, LAST_NAME FROM STUDENTS WHERE (LAST_NAME = ?)
+	bind => [Hostettler]
+2901 [main] INFO ch.demo.helpers.jpa.EntityManagerStore - Unregistering an entity manager
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.979 sec
+Running ch.demo.business.service.MockStudentServiceImplTest
+2927 [main] INFO org.jboss.weld.Bootstrap - WELD-000101 Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+Mar 8, 2012 3:17:54 PM ch.demo.business.service.mock.StudentServiceMockImpl <init>
+INFO: This is the mock implementation
+Mar 8, 2012 3:17:54 PM ch.demo.business.service.mock.StudentServiceMockImpl <init>
+INFO: Creation of a new StudentServiceImpl
+Mar 8, 2012 3:17:54 PM ch.demo.business.service.mock.StudentServiceMockImpl <init>
+INFO: This is the mock implementation
+Mar 8, 2012 3:17:54 PM ch.demo.business.service.mock.StudentServiceMockImpl <init>
+INFO: Creation of a new StudentServiceImpl
+Mar 8, 2012 3:17:54 PM ch.demo.business.interceptors.PerformanceInterceptor logPerformance
+INFO: ******  add:0 ms  ******
+Student [mId=null, mLastName=Hostettler, mFirstName=Steve, mBirthDate=Thu Mar 08 15:17:54 CET 2012, mPhoneNumber=null, mGrades=[ch.demo.dom.Grade@48e2fa0e, ch.demo.dom.Grade@2d8ed284, ch.demo.dom.Grade@7b9eef79, ch.demo.dom.Grade@7f7c3056, ch.demo.dom.Grade@32499f7d, ch.demo.dom.Grade@7f85e155, ch.demo.dom.Grade@2e8cd4db]]
+Student [mId=null, mLastName=Hostettler, mFirstName=Steve, mBirthDate=Thu Mar 08 15:17:54 CET 2012, mPhoneNumber=ch.demo.dom.PhoneNumber@1fea8dbd, mGrades=[ch.demo.dom.Grade@5fff83a9, ch.demo.dom.Grade@1cfd7c, ch.demo.dom.Grade@6f45d7f2, ch.demo.dom.Grade@526489f0, ch.demo.dom.Grade@469c15d2, ch.demo.dom.Grade@315cb235, ch.demo.dom.Grade@3cb7cee4, ch.demo.dom.Grade@476ff9e0, ch.demo.dom.Grade@87e05c4, ch.demo.dom.Grade@9ac8b37, ch.demo.dom.Grade@1ee7ccd7, ch.demo.dom.Grade@439471b, ch.demo.dom.Grade@4c6b3fc7, ch.demo.dom.Grade@15284903]]
+null
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.109 sec
+Running ch.demo.business.service.WSStudentServiceImplTest
+3038 [main] INFO org.jboss.weld.Bootstrap - WELD-000101 Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+Mar 8, 2012 3:17:54 PM ch.demo.business.service.mock.StudentServiceMockImpl <init>
+INFO: This is the mock implementation
+Mar 8, 2012 3:17:54 PM ch.demo.business.service.mock.StudentServiceMockImpl <init>
+INFO: Creation of a new StudentServiceImpl
+Mar 8, 2012 3:17:54 PM ch.demo.business.service.mock.StudentServiceMockImpl <init>
+INFO: This is the mock implementation
+Mar 8, 2012 3:17:54 PM ch.demo.business.service.mock.StudentServiceMockImpl <init>
+INFO: Creation of a new StudentServiceImpl
+3128 [main] INFO ch.demo.business.service.StudentServiceWSImpl - Use the Web Service implementation
+3128 [main] WARN ch.demo.business.service.StudentServiceWSImpl - This pseudo-implementation deleguates to the mock
+Student [mId=null, mLastName=Hostettler, mFirstName=Steve, mBirthDate=Thu Mar 08 15:17:54 CET 2012, mPhoneNumber=null, mGrades=[ch.demo.dom.Grade@a2026f3, ch.demo.dom.Grade@44dd20b6, ch.demo.dom.Grade@118eb00c, ch.demo.dom.Grade@2ec7ecd5, ch.demo.dom.Grade@478dabf1, ch.demo.dom.Grade@26137fea, ch.demo.dom.Grade@4a32ef2d]]
+Student [mId=null, mLastName=Hostettler, mFirstName=Steve, mBirthDate=Thu Mar 08 15:17:54 CET 2012, mPhoneNumber=ch.demo.dom.PhoneNumber@55f49969, mGrades=[ch.demo.dom.Grade@2d83e895, ch.demo.dom.Grade@2f1aa58b, ch.demo.dom.Grade@7e6a60d5, ch.demo.dom.Grade@79fb80c9, ch.demo.dom.Grade@6ec44aaf, ch.demo.dom.Grade@19035ff9, ch.demo.dom.Grade@2c91e143, ch.demo.dom.Grade@1d5c0c91, ch.demo.dom.Grade@63d12a6, ch.demo.dom.Grade@1393537d, ch.demo.dom.Grade@2d4e3d95, ch.demo.dom.Grade@6bad186f, ch.demo.dom.Grade@311f56a3, ch.demo.dom.Grade@710087]]
+null
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.113 sec
+Running ch.demo.dom.StudentPersistenceTest
+3160 [main] INFO org.jboss.weld.Bootstrap - WELD-000101 Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.254 sec <<< FAILURE!
+Running ch.demo.example.jdbc.JDBCTest
+Connecting to database...
+Connecting to database...
+Database: MySQL
+Version: 5.5.20
+Connecting to database...
+Database: MySQL
+Version: 5.5.20
+Creating statement...
+ID: 1, First Name: rurtur, Last Name: rtzutu, Birthdate: 2012-02-21
+ID: 2, First Name: fjfgj, Last Name: fghjfgj, Birthdate: 2012-02-07
+ID: 3, First Name: rtzrrezez, Last Name: eretertz, Birthdate: 2012-02-05
+ID: 4, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 5, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-01
+ID: 6, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 7, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 8, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 9, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 10, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 11, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 12, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 13, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 14, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 15, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 16, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 17, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 18, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 19, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 20, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 21, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 22, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 23, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 24, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 25, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 26, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 27, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 28, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 29, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 30, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 31, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-08
+ID: 32, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 33, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-08
+ID: 34, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 35, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 36, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 37, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 38, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 39, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 40, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 41, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 42, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 43, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 44, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 45, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 46, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+Connecting to database...
+Database: MySQL
+Version: 5.5.20
+Creating statement...
+ID: 1, First Name: rurtur, Last Name: rtzutu, Birthdate: 2012-02-21
+ID: 2, First Name: fjfgj, Last Name: fghjfgj, Birthdate: 2012-02-07
+ID: 3, First Name: rtzrrezez, Last Name: eretertz, Birthdate: 2012-02-05
+ID: 4, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 5, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-01
+ID: 6, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 7, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 8, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 9, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 10, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 11, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 12, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 13, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 14, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 15, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 16, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 17, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 18, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 19, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 20, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 21, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 22, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 23, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 24, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 25, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 26, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 27, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 28, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 29, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 30, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-06
+ID: 31, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-08
+ID: 32, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 33, First Name: Steve, Last Name: Hostettler, Birthdate: 2012-03-08
+ID: 34, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 35, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 36, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 37, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 38, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 39, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 40, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 41, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 42, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 43, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 44, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 45, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+ID: 46, First Name: JOHN, Last Name: DOE, Birthdate: 1978-10-10
+Connecting to database...
+Database: MySQL
+Version: 5.5.20
+Creating statement...
+Connecting to database...
+Database: MySQL
+Version: 5.5.20
+Creating statement...
+INSERT INTO STUDENTS(LAST_NAME, FIRST_NAME, BIRTH_DATE, PHONE_NUMBER) VALUES ('DOE', 'JOHN', '1978-10-10', '00-0000-0000')
+Connecting to database...
+Database: MySQL
+Version: 5.5.20
+Creating statement...
+UPDATE STUDENTS SET PHONE_NUMBER = '00-0000-0001' WHERE PHONE_NUMBER ='00-0000-0000'
+Connecting to database...
+Database: MySQL
+Version: 5.5.20
+Creating statement...
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.309 sec
+Running ch.demo.example.jdbc.StudentJDBCTest
+Connecting to database...
+Connecting to database...
+Database: MySQL
+Version: 5.5.20
+Creating statement...
+select LAST_NAME, FIRST_NAME, PHONE_NUMBER, BIRTH_DATE from STUDENTS
++00-6666-6666
++00-6666-6666
++00-6666-6666
+00-0000-0001
++00-0000-0000
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
++00-0000-0000
+00-0000-0001
+00-0000-0001
+00-0000-0001
++00-0000-0000
+00-0000-0001
+00-0000-0001
+00-0000-0001
++00-0000-0000
++00-0000-0000
+00-0000-0001
++00-0000-0000
++00-0000-0000
+00-0000-0001
++00-0000-0000
+00-0000-0001
++00-0000-0000
+00-0000-0001
+00-0000-0001
++00-0000-0000
++00-0000-0000
+00-0000-0001
++00-0000-0000
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+00-0000-0001
+UPDATE Students SET LAST_NAME = ?    , FIRST_NAME = ?   , BIRTH_DATE = ?   ,PHONE_NUMBER = ?  WHERE FIRST_NAME = ?
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 sec
+
+Results :
+
+Tests in error: 
+  createStudent(ch.demo.dom.StudentPersistenceTest): DELETE on table 'STUDENTS' caused a violation of foreign key constraint 'GRADES_STUDENTS_ID' for key (1).  The statement has been rolled back.
+
+Tests run: 26, Failures: 0, Errors: 1, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 5.829s
+[INFO] Finished at: Thu Mar 08 15:17:55 CET 2012
+[INFO] Final Memory: 5M/81M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.7.2:test (default-test) on project ServiceLayer: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /Users/hostettler/Documents/workspaces/ifage/ServiceLayer/target/surefire-reports for the individual test results.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
