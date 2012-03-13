@@ -59,8 +59,8 @@ public class Student implements Serializable {
     @Convert("phoneConverter")
     private PhoneNumber mPhoneNumber;
 
-//    /** The student's gender. */
-//    private transient Gender mGender;
+    /** The student's gender. */
+    private transient Gender mGender;
     
     /** The set of grades of the student. */
     @OneToMany(cascade = CascadeType.ALL)
@@ -211,19 +211,19 @@ public class Student implements Serializable {
         }
     }
 
-//    /**
-//     * @return the gender
-//     */
-//    public final Gender getGender() {
-//        return mGender;
-//    }
-//
-//    /**
-//     * @param gender the gender to set
-//     */
-//    public final void setGender(final Gender gender) {
-//        mGender = gender;
-//    }
+    /**
+     * @return the gender
+     */
+    public final Gender getGender() {
+        return mGender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public final void setGender(final Gender gender) {
+        mGender = gender;
+    }
 
     @Override
     public int hashCode() {
@@ -250,9 +250,6 @@ public class Student implements Serializable {
         return false;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
     @Override
     public String toString() {
         return "Student [mId=" + mId + ", mLastName=" + mLastName

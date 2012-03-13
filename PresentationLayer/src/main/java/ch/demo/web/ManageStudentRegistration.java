@@ -11,6 +11,7 @@ import org.primefaces.model.chart.PieChartModel;
 import org.slf4j.Logger;
 
 import ch.demo.business.service.StudentService;
+import ch.demo.dom.Gender;
 import ch.demo.dom.Student;
 
 /**
@@ -140,10 +141,10 @@ public class ManageStudentRegistration implements Serializable {
 	}
 
 	
-//	/**
-//	 * @return an array that contains all the possible genders.
-//	 */
-//	public Gender[] getGenderValues() {
-//		return Gender.values();
-//	}
+	/**
+	 * @return an array that contains all the possible genders.
+	 */
+	public Gender[] getGenderValues() {
+		return Gender.values();
+	}
 }
