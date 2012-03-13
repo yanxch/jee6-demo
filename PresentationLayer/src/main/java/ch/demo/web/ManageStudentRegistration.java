@@ -10,7 +10,6 @@ import javax.inject.Named;
 import org.primefaces.model.chart.PieChartModel;
 import org.slf4j.Logger;
 
-import ch.demo.business.service.JPAImpl;
 import ch.demo.business.service.StudentService;
 import ch.demo.dom.Student;
 
@@ -32,7 +31,7 @@ public class ManageStudentRegistration implements Serializable {
 	/** The logger for the class. */
 	@Inject
 	private transient Logger mLogger;
-	
+
 	/** The number of partitions of the domain of the grades. */
 	private static final int PARTS = 4;
 
@@ -44,7 +43,8 @@ public class ManageStudentRegistration implements Serializable {
 	private Conversation mConversation;
 
 	/** The service that provides the business logic for the student registration process. */
-	@Inject @JPAImpl
+	@Inject
+//	@JPAImpl
 	private StudentService mService;
 
 	/**
@@ -138,4 +138,12 @@ public class ManageStudentRegistration implements Serializable {
 
 		return pie;
 	}
+
+	
+//	/**
+//	 * @return an array that contains all the possible genders.
+//	 */
+//	public Gender[] getGenderValues() {
+//		return Gender.values();
+//	}
 }

@@ -59,7 +59,14 @@
    		<to-view-id>/xhtml/listStudents.xhtml</to-view-id>
    	</navigation-case>
    </navigation-rule>   
-   
+
+<!--    
+   <converter>
+	   <converter-for-class>ch.demo.dom.Gender</converter-for-class>  
+	   <converter-class>javax.faces.convert.EnumConverter</converter-class>  
+   </converter>
+-->
+
    <converter>
           <description>A Converter for phone number</description>
           <converter-id>PhoneNumberConverter</converter-id>
