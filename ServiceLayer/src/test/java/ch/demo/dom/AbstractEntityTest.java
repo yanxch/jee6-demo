@@ -17,16 +17,12 @@ import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.runner.RunWith;
-
-import ch.demo.helper.WeldJUnit4Runner;
 
 /**
  * Abstracts the entity tests.
  * @author hostettler
  * 
  */
-@RunWith(WeldJUnit4Runner.class)
 public abstract class AbstractEntityTest {
     
     /** The factory that produces entity manager. */
