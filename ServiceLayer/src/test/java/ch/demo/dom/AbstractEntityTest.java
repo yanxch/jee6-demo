@@ -76,6 +76,7 @@ public abstract class AbstractEntityTest {
         DatabaseOperation.CLEAN_INSERT.execute(mConnection, mDataset);
     }
     
+
     /**
      * @return the emf
      */
