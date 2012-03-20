@@ -35,7 +35,9 @@ import ch.demo.dom.jpa.JPAPhoneNumberConverter;
  */
 @Entity
 @Table(name = "STUDENTS")
-@SecondaryTable(name = "PICTURES", pkJoinColumns = @PrimaryKeyJoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"))
+@SecondaryTable(name = "PICTURES", 
+    pkJoinColumns = @PrimaryKeyJoinColumn(name = "STUDENT_ID", 
+        referencedColumnName = "ID"))
 public class Student implements Serializable {
 
     /** The serial-id. */
@@ -78,14 +80,12 @@ public class Student implements Serializable {
     @JoinColumn(name = "STUDENT_ID", nullable = true)
     private List<Grade> mGrades;
 
-//    /** A picture of the student. */
-//    @Lob
-//    @Basic(optional = true, fetch = FetchType.EAGER)
-//    @Column(table = "PICTURES", name = "PICTURE", nullable = true)
-//    private transient byte[] mPicture;
-    @Basic(optional = true, fetch = FetchType.EAGER)
-    @Column(table = "PICTURES", name = "PICTURE", nullable = true)
-    private transient String mPicture; 
+     /** A picture of the student. */
+     @Lob
+     @Basic(optional = true, fetch = FetchType.EAGER)
+     @Column(table = "PICTURES", name = "PICTURE", nullable = true)
+     private transient byte[] mPicture;
+
 
     /**
      * Empty (default) constructor.
@@ -294,33 +294,19 @@ public class Student implements Serializable {
         mAddress = address;
     }
 
-//    /**
-//     * @return the picture
-//     */
-//    public final byte[] getPicture() {
-//        return mPicture;
-//    }
-//
-//    /**
-//     * @param picture
-//     *            the picture to set
-//     */
-//    public void setPicture(final byte[] picture) {
-//        mPicture = picture;
-//    }
-    
-    /**
+     /**
      * @return the picture
      */
-    public final String getPicture() {
-        return mPicture;
-    }
-
-    /**
+     public final byte[] getPicture() {
+     return mPicture;
+     }
+    
+     /**
      * @param picture
-     *            the picture to set
+     * the picture to set
      */
-    public void setPicture(final String picture) {
-        mPicture = picture;
-    }
+     public void setPicture(final byte[] picture) {
+     mPicture = picture;
+     }
+
 }
