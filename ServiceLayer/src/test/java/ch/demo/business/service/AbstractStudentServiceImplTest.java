@@ -8,6 +8,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import ch.demo.dom.AbstractDBTest;
 import ch.demo.dom.Discipline;
 import ch.demo.dom.Grade;
 import ch.demo.dom.PhoneNumber;
@@ -18,7 +19,7 @@ import ch.demo.dom.Student;
  * 
  * @author hostettler
  */
-public abstract class AbstractStudentServiceImplTest {
+public abstract class AbstractStudentServiceImplTest extends AbstractDBTest {
 
     /**
      * Test the addition a new student to the repository.
@@ -83,6 +84,7 @@ public abstract class AbstractStudentServiceImplTest {
      */
     @Test
     public void testExistingStudent() {
+        testAdd();
         Assert.assertNotNull(getService().getStudentByLastName("Hostettler"));
     }
 

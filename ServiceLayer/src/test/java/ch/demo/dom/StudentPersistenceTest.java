@@ -17,7 +17,7 @@ import org.junit.Test;
  * 
  */
 
-public class StudentPersistenceTest extends AbstractEntityTest {
+public class StudentPersistenceTest extends AbstractDBTest {
 
     /**
      * Creates a new student and then check the number of actual students in the
@@ -34,14 +34,19 @@ public class StudentPersistenceTest extends AbstractEntityTest {
             student.getGrades().add(g);
         }
 
+        CriteriaBuilder qb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Student> c = qb.createQuery(Student.class);
+        Query query = getEntityManager().createQuery(c);
+        LOGGER.info("Number of students in the DB:"
+                + query.getResultList().size());
+
         getTrx().begin();
         getEntityManager().persist(student);
         getTrx().commit();
 
-        CriteriaBuilder qb = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<Student> c = qb.createQuery(Student.class);
-        Query query = getEntityManager().createQuery(c);
-
+        query = getEntityManager().createQuery(c);
+        LOGGER.info("Number of students in the DB:"
+                + query.getResultList().size());
         Assert.assertEquals(6, query.getResultList().size());
 
     }
@@ -60,6 +65,7 @@ public class StudentPersistenceTest extends AbstractEntityTest {
             Grade g = new Grade(d, 10);
             student.getGrades().add(g);
         }
+        student.setPicture(new byte[] { 1, 2, 3 });
 
         getTrx().begin();
         getEntityManager().persist(student);
@@ -69,12 +75,14 @@ public class StudentPersistenceTest extends AbstractEntityTest {
         CriteriaQuery<Student> c = qb.createQuery(Student.class);
         Query query = getEntityManager().createQuery(c);
 
-        Assert.assertEquals(6, query.getResultList().size());
+        LOGGER.info("Number of students in the DB:"
+                + query.getResultList().size());
 
         getTrx().begin();
         getEntityManager().remove(student);
         getTrx().commit();
-
+        LOGGER.info("Number of students in the DB:"
+                + query.getResultList().size());
         Assert.assertEquals(5, query.getResultList().size());
     }
 }

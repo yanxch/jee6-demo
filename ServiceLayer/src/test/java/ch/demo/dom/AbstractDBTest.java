@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * @author hostettler
  * 
  */
-public abstract class AbstractEntityTest {
+public abstract class AbstractDBTest {
 
     /** The default logger for the class. */
     public static final Logger LOGGER = LoggerFactory
@@ -70,7 +70,7 @@ public abstract class AbstractEntityTest {
                 .getConnection();
 
         ij.runScript(connection,
-                AbstractEntityTest.class.getResourceAsStream(mDDLFileName),
+                AbstractDBTest.class.getResourceAsStream(mDDLFileName),
                 "UTF-8", System.out, "UTF-8");
 
         // Load the test datasets in the database
