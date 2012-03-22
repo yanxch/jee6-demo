@@ -4,6 +4,7 @@
 package ch.demo.dom;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -51,7 +52,7 @@ public abstract class AbstractDBTest {
     private static String mDDLFileName = "/sql/createStudentsDB_DERBY.sql";
     /** Target persistence unit. */
     private static String mPersistenceUnit = "JEE6Demo-Test-Persistence";
-
+    
     /**
      * Initializes the manager and the database.
      * 
@@ -59,7 +60,7 @@ public abstract class AbstractDBTest {
      *             if anything goes wrong.
      */
     @BeforeClass
-    public static void initEntityManager() throws Exception {
+    public static void initTestFixture() throws Exception {
         // Get the entity manager for the tests.
         mEmf = Persistence.createEntityManagerFactory(mPersistenceUnit);
         mEntityManager = mEmf.createEntityManager();
@@ -83,9 +84,11 @@ public abstract class AbstractDBTest {
 
     /**
      * Cleans up the session.
+     * @throws SQLException if anything goes wrong during connection closing.
      */
     @AfterClass
-    public static void closeEntityManager() {
+    public static void closeTestFixture() throws SQLException {
+        mDBUnitConnection.close();
         mEntityManager.close();
         mEmf.close();
     }
@@ -97,7 +100,7 @@ public abstract class AbstractDBTest {
      *             if anything goes wrong.
      */
     @Before
-    public void initTransaction() throws Exception {
+    public void initTest() throws Exception {
         LOGGER.info("Prepare the database.");
         DatabaseOperation.CLEAN_INSERT.execute(mDBUnitConnection, mDataset);
         LOGGER.info("Start a new transaction for the test");
