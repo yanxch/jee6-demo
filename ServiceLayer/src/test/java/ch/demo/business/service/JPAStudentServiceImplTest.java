@@ -4,14 +4,14 @@ import javax.inject.Inject;
 
 import org.junit.runner.RunWith;
 
-import ch.demo.helper.WeldJUnit4Runner;
+import ch.demo.helper.DerbyWeldJUnit4Runner;
 
 /**
  * Test the student service mock implementation.
  * 
  * @author hostettler
  */
-@RunWith(WeldJUnit4Runner.class)
+@RunWith(DerbyWeldJUnit4Runner.class)
 public class JPAStudentServiceImplTest extends AbstractStudentServiceImplTest {
 
     /** Service retrieved by the Weld container. */

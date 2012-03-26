@@ -3,6 +3,7 @@ package ch.demo.dom;
 import java.util.Date;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
@@ -33,6 +34,7 @@ public class StudentPersistenceTest extends AbstractDBTest {
             Grade g = new Grade(d, 10);
             student.getGrades().add(g);
         }
+        student.setPicture("test".getBytes());
 
         CriteriaBuilder qb = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Student> c = qb.createQuery(Student.class);
@@ -48,6 +50,25 @@ public class StudentPersistenceTest extends AbstractDBTest {
         LOGGER.info("Number of students in the DB:"
                 + query.getResultList().size());
         Assert.assertEquals(6, query.getResultList().size());
+
+    }
+
+    /**
+     * Test the picture.
+     * 
+     */
+    @Test
+    public void fetchPicture() {
+        LOGGER.info("Fetch the pictures");
+        CriteriaBuilder qb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Student> c = qb.createQuery(Student.class);
+        TypedQuery<Student> query = getEntityManager().createQuery(c);
+        LOGGER.info("Number of students in the DB:"
+                + query.getResultList().size());
+
+        for (Student s : query.getResultList()) {
+            System.out.println(s.getLastName() + " " + s.getPicture());
+        }
 
     }
 
