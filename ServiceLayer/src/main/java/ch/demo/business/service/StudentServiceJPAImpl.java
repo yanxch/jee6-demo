@@ -38,7 +38,7 @@ public class StudentServiceJPAImpl implements StudentService {
 
     /** The entity manager that manages the persistence. */
     //The first line is for compatibility with JEE servers
-    @PersistenceContext(unitName = "JEE6Demo-Test-Persitence")
+    @PersistenceContext(unitName = "JEE6Demo-Persistence")
     @Inject
     private EntityManager mEntityManager;
 
