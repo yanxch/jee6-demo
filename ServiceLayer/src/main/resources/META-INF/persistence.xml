@@ -6,6 +6,7 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>ch.demo.dom.Student</class>
         <class>ch.demo.dom.Grade</class>
+        <class>ch.demo.dom.Badge</class>
         <properties>
             <property name="eclipselink.target-database" value="MYSQL" />
             <property name="eclipselink.jdbc.read-connections.min" value="3"/>

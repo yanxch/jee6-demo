@@ -18,7 +18,7 @@ import ch.demo.dom.Student;
  * 
  * @author hostettler
  */
-public abstract class AbstractStudentServiceImplTest  {
+public abstract class AbstractStudentServiceImplTest {
 
     /**
      * Test the addition a new student to the repository.
@@ -71,13 +71,13 @@ public abstract class AbstractStudentServiceImplTest  {
     public void testNonExistingStudent() {
         Student s = new Student("MyLastName", "MyFirstName", new Date());
         try {
-           getService().getStudentById(s.getKey());
-           Assert.fail("There should be no student with that last name in the DB");
+            getService().getStudentById(s.getKey());
+            Assert.fail("There should be no student with that last name in the DB");
         } catch (NoResultException ex) {
-           System.out.println(ex.getMessage()); 
+            System.out.println(ex.getMessage());
         }
     }
-    
+
     /**
      * Test the behavior when a non-existing student is requested.
      */
@@ -91,4 +91,6 @@ public abstract class AbstractStudentServiceImplTest  {
      * @return the actual implementation of the service.
      */
     protected abstract StudentService getService();
+
+
 }

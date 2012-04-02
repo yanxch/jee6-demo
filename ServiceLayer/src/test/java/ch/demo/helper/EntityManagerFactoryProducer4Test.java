@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ch.demo.business.service;
+package ch.demo.helper;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
@@ -21,6 +21,7 @@ public class EntityManagerFactoryProducer4Test {
     /**
      * @return an entity manager factory for test purposes
      */
+    @Alternative
     @Produces
     public EntityManagerFactory produceEntityManager() {
             return Persistence.createEntityManagerFactory("JEE6Demo-Test-Persistence");    

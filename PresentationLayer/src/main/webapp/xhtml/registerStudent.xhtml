@@ -30,6 +30,7 @@
                      value="#{manageStudentRegistration.student.firstName}"
                      required="true">
                      <f:validateLength minimum="5" />
+                     <f:validateLength maximum="30"/>
                      <f:validateRequired />
                      <p:ajax event="blur" update="msgFirstName" />
                   </p:inputText>
@@ -52,7 +53,7 @@
                      value="#{manageStudentRegistration.student.phoneNumber}"
                      required="true" >
                      <f:validator validatorId="PhoneNumberValidator" />
-                     <f:converter converterId="PhoneNumberConverter"/>
+                     <f:converter converterId="PhoneNumberConverter" />
                   </p:inputText>   
                   <p:message id="msgPhoneNumber" for="phoneNumberInput" />
 

@@ -17,22 +17,22 @@ import org.jboss.weld.context.bound.MutableBoundRequest;
 
 /**
  * This helper class has been taken from http://www.jtips.info/index.php?title=WeldSE/Scopes
- * and simulates request and sessions scoped outside of an application server.
+ * and simulates request and session scopes outside of an application server.
  *
  */
 public class WeldServletScopesSupportForSe implements Extension {
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	public void afterDeployment(@Observes final AfterDeploymentValidation event, final BeanManager beanManager) {
+	/** {@inheritDoc} */
+	public void afterDeployment(@Observes final AfterDeploymentValidation event, 
+					final BeanManager beanManager) {
 		Map<String, Object> sessionMap = new HashMap<String, Object>();
 		activateContext(beanManager, SessionScoped.class, sessionMap);
 
 		Map<String, Object> requestMap = new HashMap<String, Object>();
 		activateContext(beanManager, RequestScoped.class, requestMap);
 
-		activateContext(beanManager, ConversationScoped.class, new MutableBoundRequest(requestMap, sessionMap));
+		activateContext(beanManager, ConversationScoped.class, 
+				new MutableBoundRequest(requestMap, sessionMap));
 	}
 
 	/**
@@ -46,7 +46,8 @@ public class WeldServletScopesSupportForSe implements Extension {
 				final Class<? extends Annotation> cls, final S storage) {
 		BeanManagerImpl beanManagerImpl = (BeanManagerImpl) beanManager;
 		@SuppressWarnings("unchecked")
-		AbstractBoundContext<S> context = (AbstractBoundContext<S>) beanManagerImpl.getContexts().get(cls).get(0);
+		AbstractBoundContext<S> context = 
+			(AbstractBoundContext<S>) beanManagerImpl.getContexts().get(cls).get(0);
 
 		context.associate(storage);
 		context.activate();

@@ -19,7 +19,7 @@
 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<servlet-class>org.apache.myfaces.webapp.MyFacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 

@@ -49,7 +49,7 @@ public abstract class AbstractDBTest {
     private static IDataSet mDataset;
 
     /** script to clean up and prepare the DB. */
-    private static String mDDLFileName = "/sql/createStudentsDB_MYSQL.sql";
+    private static String mDDLFileName = "/sql/createStudentsDB_DERBY.sql";
     /** Target persistence unit. */
     private static String mPersistenceUnit = "JEE6Demo-Test-Persistence";
     

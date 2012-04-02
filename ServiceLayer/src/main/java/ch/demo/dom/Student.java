@@ -5,16 +5,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
@@ -33,9 +36,8 @@ import ch.demo.dom.jpa.JPAPhoneNumberConverter;
  */
 @Entity
 @Table(name = "STUDENTS")
-@SecondaryTable(name = "PICTURES", 
-    pkJoinColumns = @PrimaryKeyJoinColumn(name = 
-    "STUDENT_ID", referencedColumnName = "ID"))
+@SecondaryTable(name = "PICTURES", pkJoinColumns = @PrimaryKeyJoinColumn(
+        name = "STUDENT_ID", referencedColumnName = "ID"))
 public class Student implements Serializable {
 
     /** The serial-id. */
@@ -74,14 +76,19 @@ public class Student implements Serializable {
     private Address mAddress;
 
     /** The set of grades of the student. */
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "STUDENT_ID", nullable = true)
     private List<Grade> mGrades;
 
     /** A picture of the student. */
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     @Column(table = "PICTURES", name = "PICTURE", nullable = false)
     private byte[] mPicture;
+
+    /** The Student's badge. */
+    @OneToOne(mappedBy = "mStudent")
+    private Badge mBadge;
 
     /**
      * Empty (default) constructor.
@@ -303,6 +310,20 @@ public class Student implements Serializable {
      */
     public void setPicture(final byte[] picture) {
         mPicture = picture;
+    }
+
+    /**
+     * @return the badge
+     */
+    public Badge getBadge() {
+        return mBadge;
+    }
+
+    /**
+     * @param badge the badge to set
+     */
+    public void setBadge(final Badge badge) {
+        mBadge = badge;
     }
 
 }

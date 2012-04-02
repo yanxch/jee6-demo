@@ -16,7 +16,7 @@ public class JPAStudentServiceImplTest extends AbstractStudentServiceImplTest {
 
     /** Service retrieved by the Weld container. */
     @Inject
-    @JPAImpl
+    @WebServiceImpl
     private StudentService mService;
 
     @Override

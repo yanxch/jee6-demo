@@ -9,11 +9,38 @@
 		<relativePath>../JEE6-Demo/pom.xml</relativePath>
 	</parent>
 
+
 	<artifactId>ServiceLayer</artifactId>
 	<packaging>jar</packaging>
 	<name>Service Layer</name>
 	<description>This project handles the service layer of the JEE 6 demo</description>
 	<url>../../../ServiceLayer/target/site</url>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+
+						<configuration>
+							<includes>
+								<includes>
+									ch/demo/helper/*.class
+								</includes>
+							</includes>
+						</configuration>
+
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 
 	<repositories>
@@ -25,6 +52,8 @@
 	</repositories>
 
 	<dependencies>
+
+		<!-- Compile dependencies -->
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
@@ -36,6 +65,21 @@
 			<artifactId>javax.persistence</artifactId>
 			<version>2.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.18</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.weld.se</groupId>
+			<artifactId>weld-se</artifactId>
+			<version>1.1.6.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.dbunit</groupId>
 			<artifactId>dbunit</artifactId>
@@ -52,6 +96,7 @@
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derbytools</artifactId>
 			<version>10.8.2.2</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.derby</groupId>
@@ -59,20 +104,6 @@
 			<version>10.8.2.2</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.18</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.weld.se</groupId>
-			<artifactId>weld-se</artifactId>
-			<version>1.1.5.Final</version>
-			<scope>provided</scope>
-		</dependency>
-
-
 
 	</dependencies>
 

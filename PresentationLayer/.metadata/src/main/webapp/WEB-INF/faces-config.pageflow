@@ -23,5 +23,5 @@
     <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
     <bendPoints d1Width="-64" d2Width="-64"/>
   </links>
-  <links id="pf13299332983640" target="pf13295598492216" source="pf13295598492201" outcome="success"/>
+  <links id="pf13299332983640" target="pf13295598492216" source="pf13295598492201" outcome="success" redirect="true"/>
 </pageflow:Pageflow>

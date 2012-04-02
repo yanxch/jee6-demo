@@ -18,7 +18,7 @@ public class WeldJUnit4Runner extends BlockJUnit4ClassRunner {
 
     /** The test class to run. */
     private final Class<?> mKlass;
-    /** Weld infrastructur. */
+    /** Weld infrastructure. */
     private final Weld weld;
     /** The container itself. */
     private final WeldContainer container;
