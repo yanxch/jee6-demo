@@ -9,8 +9,10 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.InitializationError;
 
 /**
+ * Helper class that injects the dependencies into the test class
+ * using weld.
  * @author hostettler
- * 
+ * Taken from http://objectopia.com/2011/05/29/weld-junit-4-runner/.
  */
 public class WeldJUnit4Runner extends BlockJUnit4ClassRunner {
 
