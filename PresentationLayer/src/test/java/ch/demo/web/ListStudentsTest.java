@@ -12,6 +12,8 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 
+import ch.demo.web.helper.AbstractEmbeddedTomcatTest;
+
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
@@ -23,8 +25,9 @@ public class ListStudentsTest extends AbstractEmbeddedTomcatTest {
 
 	/**
 	 * Build a new web app called test.
+	 * @throws Exception if anything goes wrong
 	 */
-	public ListStudentsTest() {
+	public ListStudentsTest() throws Exception {
 		super("test");
 	}
 

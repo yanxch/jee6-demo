@@ -14,7 +14,7 @@
             <property name="eclipselink.jdbc.write-connections.max" value="1"/>
 
             <property name="eclipselink.ddl-generation" value="none" />
-            <property name="eclipselink.logging.level" value="FINEST" />
+            <property name="eclipselink.logging.level" value="FINE" />
 
             <property name="eclipselink.target-database" value="DERBY" />
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />

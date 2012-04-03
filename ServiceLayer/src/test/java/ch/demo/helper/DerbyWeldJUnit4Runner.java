@@ -80,13 +80,15 @@ public class DerbyWeldJUnit4Runner extends WeldJUnit4Runner {
         return test;
     }
 
+    
+    
     /**
-     * Initializes the Database state.
-     * {@inheritDoc}
+     * Initializes the Database state. {@inheritDoc}
      */
+    @SuppressWarnings("deprecation")
     @Override
-    protected final Statement withBefores(final FrameworkMethod method, final Object target,
-            final Statement statement) {
+    protected final Statement withBefores(final FrameworkMethod method,
+            final Object target, final Statement statement) {
         try {
             DatabaseOperation.CLEAN_INSERT.execute(mDBUnitConnection, mDataset);
         } catch (Exception e) {
@@ -94,4 +96,5 @@ public class DerbyWeldJUnit4Runner extends WeldJUnit4Runner {
         }
         return super.withBefores(method, target, statement);
     }
+
 }
