@@ -2,7 +2,6 @@ package ch.demo.business.service;
 
 import javax.inject.Inject;
 
-import org.junit.Rule;
 import org.junit.runner.RunWith;
 
 import ch.demo.helper.DerbyWeldJUnit4Runner;
