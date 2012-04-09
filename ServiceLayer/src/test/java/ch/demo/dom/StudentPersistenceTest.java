@@ -68,6 +68,9 @@ public class StudentPersistenceTest extends AbstractDBTest {
 
         for (Student s : query.getResultList()) {
             System.out.println(s.getLastName() + " " + s.getPicture());
+            for (Grade g : s.getGrades()) {
+                LOGGER.info("***** Grade : " + g.getDiscipline());
+            }
         }
 
     }

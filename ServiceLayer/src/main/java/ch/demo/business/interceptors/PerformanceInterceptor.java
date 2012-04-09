@@ -3,6 +3,7 @@
  */
 package ch.demo.business.interceptors;
 
+import java.io.Serializable;
 import java.util.logging.Logger;
 
 import javax.interceptor.AroundInvoke;
@@ -15,8 +16,10 @@ import javax.interceptor.InvocationContext;
  */
 @Benchmarkable
 @Interceptor
-public class PerformanceInterceptor {
+public class PerformanceInterceptor implements Serializable {
 
+    /** default serial id. */
+    private static final long serialVersionUID = 1L;
     /** The default logger for the class. */
     private static final Logger LOGGER = Logger.getAnonymousLogger();
 

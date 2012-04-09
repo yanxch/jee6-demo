@@ -3,6 +3,8 @@
  */
 package ch.demo.helpers.jpa;
 
+import java.io.Serializable;
+
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
@@ -22,7 +24,10 @@ import org.slf4j.Logger;
  */
 @Interceptor
 @Transactional
-public class TransactionInterceptor {
+public class TransactionInterceptor implements Serializable {
+
+    /** Default id. */
+    private static final long serialVersionUID = 1948268708686614709L;
 
     /** The entity manager that comes from the entity manager store. */
     @Inject
