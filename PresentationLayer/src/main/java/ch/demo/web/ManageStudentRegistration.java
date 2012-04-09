@@ -10,6 +10,7 @@ import javax.inject.Named;
 import org.primefaces.model.chart.PieChartModel;
 import org.slf4j.Logger;
 
+import ch.demo.business.interceptors.Benchmarkable;
 import ch.demo.business.service.StudentService;
 import ch.demo.dom.Gender;
 import ch.demo.dom.Student;
@@ -125,6 +126,7 @@ public class ManageStudentRegistration implements Serializable {
 	 * 
 	 * @return a pie chart
 	 */
+	@Benchmarkable
 	public PieChartModel getPieModel() {
 		PieChartModel pie = new PieChartModel();
 
