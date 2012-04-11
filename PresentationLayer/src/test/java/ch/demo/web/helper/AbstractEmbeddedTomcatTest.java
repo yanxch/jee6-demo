@@ -5,10 +5,12 @@ package ch.demo.web.helper;
 
 import java.io.File;
 
+import org.apache.catalina.LifecycleState;
 import org.apache.catalina.startup.Tomcat;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.impl.base.exporter.zip.ZipExporterImpl;
-import org.junit.AfterClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,10 @@ public abstract class AbstractEmbeddedTomcatTest {
 
 	/** The base url of the test app. */
 	private String mAppBaseURL;
+	/** The context path of the application under test. */
+	private String mContextPath;
+	/** File that references the WAR. */
+	private File mWebApp;
 
 	/**
 	 * Stops the tomcat server.
@@ -47,16 +53,34 @@ public abstract class AbstractEmbeddedTomcatTest {
 	}
 
 	/**
+	 * Initializes a test case.
+	 * @throws Throwable if anything wrong happens
+	 */
+	@Before
+	public final void init() throws Throwable {
+		mTomcat.start();
+		mTomcat.addWebapp(mTomcat.getHost(), this.mContextPath, this.mWebApp.getAbsolutePath());
+		mAppBaseURL = "http://localhost:" + getTomcatPort() + this.mContextPath;
+	}
+
+	/**
 	 * Stops the tomcat server.
 	 * 
 	 * @throws Throwable
 	 *             if anything goes wrong.
 	 */
-	@AfterClass
-	public static final void teardown() throws Throwable {
+	@After
+	public final void teardown() throws Throwable {
 		LOGGER.info("Stop the server...");
-		mTomcat.stop();
-	};
+		
+		if (mTomcat.getServer() != null
+                && mTomcat.getServer().getState() != LifecycleState.DESTROYED) {
+            if (mTomcat.getServer().getState() != LifecycleState.STOPPED) {
+            	mTomcat.stop();
+            }
+            mTomcat.destroy();
+        }
+	}
 
 	/**
 	 * Prepares a new integration test.
@@ -68,12 +92,9 @@ public abstract class AbstractEmbeddedTomcatTest {
 	 */
 	public AbstractEmbeddedTomcatTest(final String applicationId) throws Exception {
 		LOGGER.info("Start the server...");
-		String contextPath = "/" + applicationId;
-		File webApp = new File(mWorkingDir, applicationId);
+		this.mContextPath = "/" + applicationId;
+		this.mWebApp = new File(mWorkingDir, applicationId);
 		new ZipExporterImpl(createWebArchive()).exportTo(new File(mWorkingDir + "/test.war"), true);
-		mTomcat.start();
-		mTomcat.addWebapp(mTomcat.getHost(), contextPath, webApp.getAbsolutePath());
-		mAppBaseURL = "http://localhost:" + getTomcatPort() + "/" + applicationId;
 	}
 
 	/**
