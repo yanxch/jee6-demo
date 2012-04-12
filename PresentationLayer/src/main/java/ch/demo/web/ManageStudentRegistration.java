@@ -42,7 +42,7 @@ public class ManageStudentRegistration implements Serializable {
 
 	/** Inject the current conversation. */
 	@Inject
-	private Conversation mConversation;
+	private transient Conversation mConversation;
 
 	/** The service that provides the business logic for the student registration process. */
 	@Inject

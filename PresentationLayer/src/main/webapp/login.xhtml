@@ -2,54 +2,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-   xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:h="http://java.sun.com/jsf/html"
-   xmlns:c="http://java.sun.com/jsp/jstl/core"
-   xmlns:ui="http://java.sun.com/jsf/facelets"
-   xmlns:p="http://primefaces.org/ui"
-   template="/xhtml/templates/layout.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/xhtml/templates/layout.xhtml">
 
-   <ui:define name="title"> 
+	<ui:define name="title"> 
       #{msgs.loginTitle}
    </ui:define>
 
-   <ui:define name="content">
+	<ui:define name="content">
 
-    <div class="central">
+		<div class="central">
+			<h:form prependId="false">
+				<h:panelGrid cellspacing="10" id="loginGrid" columns="3">
+					<h:outputText styleClass="ui-widget" for="username"
+						value="${msgs.username}" />
+					<p:inputText prependId="false" id="username"  required="true">
+						<f:validateLength minimum="4" />
+						<f:validateRequired />
+						<p:ajax event="blur" update="msgj_username" />
+					</p:inputText>
+					<h:message styleClass="errorMsg" id="msgj_username" for="username" />
 
-      <h:form id="login" prependId="false"
-         onsubmit="setvalue(); document.#{p:component('login')}.action='j_security_check';">
-         <h:panelGrid cellspacing="10" id="loginGrid" columns="3">
-            <h:outputText styleClass="ui-widget" for="j_username" value="${msgs.username}" />
-            <p:inputText id="j_username" required="true">
-               <f:validateLength minimum="4" />
-               <f:validateRequired />
-               <p:ajax event="blur" update="msgj_username" />
-            </p:inputText>
-            <h:message  styleClass="errorMsg"  id="msgj_username" for="j_username" />
-
-            <h:outputText styleClass="ui-widget" for="password" value="${msgs.password}" />
-            <p:password id="password" required="true">
-               <f:validateLength minimum="4" />
-               <f:validateRequired />
-               <p:ajax event="blur" update="msgj_password" />
-            </p:password>
-            <h:message styleClass="errorMsg" id="msgj_password" for="password" />
-
-            <h:inputHidden id="j_password" />
-            <p:commandButton
-               onclick="document.#{component.clientId}.action='j_security_check';"
-               value="${msgs.login}" />
-
-         </h:panelGrid>
-      </h:form>
-      <script type="text/javascript">
-          function setvalue() {
-              var pass = document.getElementById('password_input').value;
-               document.getElementById('j_password').value = pass;
-           }
-      </script>
-      
-</div>      
-   </ui:define>
+					<h:outputText styleClass="ui-widget" for="password"
+						value="${msgs.password}" />
+					<p:password prependId="false" id="password" required="true">
+						<f:validateLength minimum="4" />
+						<f:validateRequired />
+						<p:ajax event="blur" update="msgj_password" />
+					</p:password>
+					<h:message styleClass="errorMsg" id="msgj_password" for="password" />
+					<p:commandButton id="login" value="login" action="#{sessionBean.login}"
+						ajax="false" />
+						
+					<h:message styleClass="errorMsg" id="loginError"/>
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</ui:define>
 </ui:composition>

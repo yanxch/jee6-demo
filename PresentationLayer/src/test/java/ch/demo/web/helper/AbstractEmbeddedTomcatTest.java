@@ -7,6 +7,7 @@ import java.io.File;
 
 import org.apache.catalina.LifecycleState;
 import org.apache.catalina.startup.Tomcat;
+import org.apache.commons.io.FileUtils;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.impl.base.exporter.zip.ZipExporterImpl;
 import org.junit.After;
@@ -24,10 +25,10 @@ public abstract class AbstractEmbeddedTomcatTest {
 
 	/** The tomcat instance. */
 	private static Tomcat mTomcat = new Tomcat();
-	/** the tempprary directory in which Tomcat and the app are deployed. */
+	/** The temporary directory in which Tomcat and the app are deployed. */
 	private static String mWorkingDir = System.getProperty("java.io.tmpdir");
 	/** The class logger. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractEmbeddedTomcatTest.class);
+	private  static final Logger LOGGER = LoggerFactory.getLogger(AbstractEmbeddedTomcatTest.class);
 
 	/** The base url of the test app. */
 	private String mAppBaseURL;
@@ -59,6 +60,11 @@ public abstract class AbstractEmbeddedTomcatTest {
 	@Before
 	public final void init() throws Throwable {
 		mTomcat.start();
+		mTomcat.addUser("admin", "admin");
+		mTomcat.addUser("user", "user");
+		mTomcat.addRole("admin", "admin");
+		mTomcat.addRole("admin", "user");
+		mTomcat.addRole("user", "user");
 		mTomcat.addWebapp(mTomcat.getHost(), this.mContextPath, this.mWebApp.getAbsolutePath());
 		mAppBaseURL = "http://localhost:" + getTomcatPort() + this.mContextPath;
 	}
@@ -94,6 +100,8 @@ public abstract class AbstractEmbeddedTomcatTest {
 		LOGGER.info("Start the server...");
 		this.mContextPath = "/" + applicationId;
 		this.mWebApp = new File(mWorkingDir, applicationId);
+		File oldWebApp = new File(mWebApp.getAbsolutePath());
+		FileUtils.deleteDirectory(oldWebApp);
 		new ZipExporterImpl(createWebArchive()).exportTo(new File(mWorkingDir + "/test.war"), true);
 	}
 

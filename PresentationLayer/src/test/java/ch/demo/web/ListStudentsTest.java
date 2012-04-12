@@ -11,39 +11,63 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import ch.demo.web.helper.AbstractEmbeddedTomcatTest;
 
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-
 /**
  * Tests the page in which the student list is displayed.
+ * 
  * @author hostettler
  */
 public class ListStudentsTest extends AbstractEmbeddedTomcatTest {
 
 	/**
 	 * Build a new web app called test.
-	 * @throws Exception if anything goes wrong
+	 * 
+	 * @throws Exception
+	 *             if anything goes wrong
 	 */
 	public ListStudentsTest() throws Exception {
 		super("test");
 	}
 
 	/**
-	 * Test a simple workflow. It verifies that the student list doest return
-	 * something useful.
-	 * @throws Exception if anything goes wrong
+	 * Test a simple workflow. It verifies that the student list doest return something useful.
+	 * 
+	 * @throws Exception
+	 *             if anything goes wrong
 	 */
 	@Test
 	public void testListStudents() throws Exception {
-		final WebClient webClient = new WebClient();
-		webClient.setJavaScriptEnabled(false);
-		final HtmlPage page = webClient.getPage(getAppBaseURL());
-		final String pageAsXml = page.asXml();
-		Assert.assertTrue(pageAsXml.contains("Steve Hostettler"));
-		webClient.closeAllWindows();
+		WebDriver driver = new HtmlUnitDriver();
+		driver.get(getAppBaseURL());
+		
+		login(driver);
+
+		Assert.assertTrue(driver.getPageSource().contains("Steve Hostettler"));
+		WebElement element = driver.findElement(By.xpath("//button[contains(@id,'register')]"));
+		Assert.assertNotNull(element);
+		element.click();
+
+		Assert.assertTrue(driver.getPageSource().contains("Enregistrer un étudiant"));
+
+	}
+
+	/**
+	 * Logs into the web site.
+	 * @param driver to apply the login
+	 */
+	private void login(final WebDriver driver) {
+		WebElement username = driver.findElement(By.xpath("//input[contains(@id,'username')]"));
+		username.sendKeys("admin");
+		WebElement password = driver.findElement(By.xpath("//input[contains(@id,'password')]"));
+		password.sendKeys("admin");
+		WebElement login = driver.findElement(By.xpath("//button[contains(@id,'login')]"));
+		login.click();
 	}
 
 	/** Where the web sources are. */
@@ -51,6 +75,7 @@ public class ListStudentsTest extends AbstractEmbeddedTomcatTest {
 
 	/**
 	 * Build a war to test a simple workflow.
+	 * 
 	 * @return a war
 	 */
 	protected WebArchive createWebArchive() {

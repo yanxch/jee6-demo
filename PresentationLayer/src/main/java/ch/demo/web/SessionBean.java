@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -27,6 +30,13 @@ public class SessionBean implements Serializable {
 
 	/** The serial-id. */
 	private static final long serialVersionUID = 6401571000111241780L;
+
+	/** The name of the username field in the login page. */
+	private static final String USERNAME = "username";
+	/** The name of the password field in the login page. */
+	private static final String PASSWORD = "password";
+	/** The name of the admin role. */
+	private static final String ADMIN = "admin";
 
 	/** The list of languages that are supported by the application. */
 	private static List<Locale> mLanguages;
@@ -49,7 +59,6 @@ public class SessionBean implements Serializable {
 	 * @return the username
 	 */
 	public final String getUsername() {
-
 		Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
 		if (principal != null) {
 			return principal.getName();
@@ -87,10 +96,9 @@ public class SessionBean implements Serializable {
 			throw new ValidatorException(msg);
 		}
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(localeCode);
-		
+
 		this.mLocale = localeCode;
 	}
-
 
 	/**
 	 * Invalidates the session.
@@ -98,12 +106,59 @@ public class SessionBean implements Serializable {
 	 * @return a string to navigate to the login page
 	 */
 	public String logout() {
-		FacesContext fc = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+		HttpSession session = getSession();
 		if (session != null) {
 			session.invalidate();
 		}
 		return "logout";
+	}
+
+	/**
+	 * Logs into the standard JEE login system.
+	 * 
+	 * @return "success" upon correct login and "failure" otherwise
+	 */
+	public String login() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		try {
+			String user = getRequest().getParameter(USERNAME);
+			String password = getRequest().getParameter(PASSWORD);
+			((HttpServletRequest) fc.getExternalContext().getRequest()).login(user, password);
+		} catch (ServletException ex) {
+			FacesMessage message = new FacesMessage();
+
+			ResourceBundle bundle = fc.getApplication().getResourceBundle(fc, "msgs");
+			message.setDetail(bundle.getString("errorLoginForbidden"));
+			message.setSummary(bundle.getString("errorLoginInvalid"));
+			message.setSeverity(FacesMessage.SEVERITY_ERROR);
+			fc.addMessage("loginError", message);
+			return "failure";
+		}
+
+		return "success";
+	}
+
+	/**
+	 * @return whether the current user is an admin.
+	 */
+	public boolean isAdmin() {
+		return FacesContext.getCurrentInstance().getExternalContext().isUserInRole(ADMIN);
+	}
+
+	/**
+	 * @return the current session
+	 */
+	private HttpSession getSession() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		return (HttpSession) fc.getExternalContext().getSession(false);
+	}
+
+	/**
+	 * @return the current request
+	 */
+	private HttpServletRequest getRequest() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+		return (HttpServletRequest) fc.getExternalContext().getRequest();
 	}
 
 }
