@@ -30,7 +30,7 @@
 
 				<p:column sortBy="#{student.lastName}">
 					<f:facet name="header">
-						<h:outputText value="#{msgs.lastName}" />
+						<h:outputText  value="#{msgs.lastName}" />
 					</f:facet>
 					<h:outputText value="#{student.lastName}" />
 				</p:column>
@@ -46,7 +46,7 @@
 					<f:facet name="header">
 						<h:outputText value="#{msgs.phoneNumber}" />
 					</f:facet>
-					<h:outputText value="#{student.phoneNumber}">
+					<h:outputText  value="#{student.phoneNumber}">
 						<f:converter converterId="PhoneNumberConverter" />
 					</h:outputText>
 				</p:column>

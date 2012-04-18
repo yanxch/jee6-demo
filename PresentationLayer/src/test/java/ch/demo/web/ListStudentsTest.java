@@ -26,17 +26,7 @@ import ch.demo.web.helper.AbstractEmbeddedTomcatTest;
 public class ListStudentsTest extends AbstractEmbeddedTomcatTest {
 
 	/**
-	 * Build a new web app called test.
-	 * 
-	 * @throws Exception
-	 *             if anything goes wrong
-	 */
-	public ListStudentsTest() throws Exception {
-		super("test");
-	}
-
-	/**
-	 * Test a simple workflow. It verifies that the student list doest return something useful.
+	 * Test a simple workflow. It verifies that the student list does return something useful.
 	 * 
 	 * @throws Exception
 	 *             if anything goes wrong
@@ -45,7 +35,7 @@ public class ListStudentsTest extends AbstractEmbeddedTomcatTest {
 	public void testListStudents() throws Exception {
 		WebDriver driver = new HtmlUnitDriver();
 		driver.get(getAppBaseURL());
-		
+
 		login(driver);
 
 		Assert.assertTrue(driver.getPageSource().contains("Steve Hostettler"));
@@ -58,8 +48,33 @@ public class ListStudentsTest extends AbstractEmbeddedTomcatTest {
 	}
 
 	/**
+	 * Test a simple workflow. It verifies that the student list does return something useful.
+	 * 
+	 * @throws Exception
+	 *             if anything goes wrong
+	 */
+	@Test
+	public void testWrongLogin() throws Exception {
+		WebDriver driver = new HtmlUnitDriver();
+		driver.get(getAppBaseURL());
+
+		WebElement username = driver.findElement(By.xpath("//input[contains(@id,'username')]"));
+		username.sendKeys("foo");
+		WebElement password = driver.findElement(By.xpath("//input[contains(@id,'password')]"));
+		password.sendKeys("foo");
+		WebElement login = driver.findElement(By.xpath("//button[contains(@id,'login')]"));
+		login.click();
+		Assert.assertTrue(driver.getPageSource().contains("username"));
+		Assert.assertTrue(driver.getPageSource().contains("password"));
+		Assert.assertTrue(driver.getPageSource().contains("login"));
+
+	}
+
+	/**
 	 * Logs into the web site.
-	 * @param driver to apply the login
+	 * 
+	 * @param driver
+	 *            to apply the login
 	 */
 	private void login(final WebDriver driver) {
 		WebElement username = driver.findElement(By.xpath("//input[contains(@id,'username')]"));
@@ -94,5 +109,10 @@ public class ListStudentsTest extends AbstractEmbeddedTomcatTest {
 						"xhtml/templates/searchbox.xhtml")
 				.addAsWebResource(new File(WEBAPP_SRC, "xhtml/templates/dialog.xhtml"), "xhtml/templates/dialog.xhtml");
 		return archive;
+	}
+
+	@Override
+	protected String getApplicationId() {
+		return "test";
 	}
 }

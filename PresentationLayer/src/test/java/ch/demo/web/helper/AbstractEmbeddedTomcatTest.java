@@ -12,7 +12,6 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.impl.base.exporter.zip.ZipExporterImpl;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,18 +23,12 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractEmbeddedTomcatTest {
 
 	/** The tomcat instance. */
-	private static Tomcat mTomcat = new Tomcat();
+	private Tomcat mTomcat;
 	/** The temporary directory in which Tomcat and the app are deployed. */
-	private static String mWorkingDir = System.getProperty("java.io.tmpdir");
+	private String mWorkingDir = System.getProperty("java.io.tmpdir");
 	/** The class logger. */
-	private  static final Logger LOGGER = LoggerFactory.getLogger(AbstractEmbeddedTomcatTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractEmbeddedTomcatTest.class);
 
-	/** The base url of the test app. */
-	private String mAppBaseURL;
-	/** The context path of the application under test. */
-	private String mContextPath;
-	/** File that references the WAR. */
-	private File mWebApp;
 
 	/**
 	 * Stops the tomcat server.
@@ -43,30 +36,37 @@ public abstract class AbstractEmbeddedTomcatTest {
 	 * @throws Throwable
 	 *             if anything goes wrong.
 	 */
-	@BeforeClass
-	public static final void setup() throws Throwable {
+	@Before
+	public final void setup() throws Throwable {
 		LOGGER.info("Tomcat's base directory : {}", mWorkingDir);
+		
+		LOGGER.info("Creates a new server...");
+		mTomcat = new Tomcat();
 		mTomcat.setPort(0);
 		mTomcat.setBaseDir(mWorkingDir);
 		mTomcat.getHost().setAppBase(mWorkingDir);
 		mTomcat.getHost().setAutoDeploy(true);
 		mTomcat.getHost().setDeployOnStartup(true);
-	}
 
-	/**
-	 * Initializes a test case.
-	 * @throws Throwable if anything wrong happens
-	 */
-	@Before
-	public final void init() throws Throwable {
-		mTomcat.start();
+		LOGGER.info("Prepares and adds the web app");
+		String contextPath = "/" + getApplicationId();
+		File webApp = new File(mWorkingDir, getApplicationId());
+		File oldWebApp = new File(webApp.getAbsolutePath());
+		FileUtils.deleteDirectory(oldWebApp);
+		new ZipExporterImpl(createWebArchive()).exportTo(new File(mWorkingDir + "/" + getApplicationId() + ".war"),
+				true);
+		mTomcat.addWebapp(mTomcat.getHost(), contextPath, webApp.getAbsolutePath());
+
+
+		LOGGER.info("Init users and roles");
 		mTomcat.addUser("admin", "admin");
 		mTomcat.addUser("user", "user");
 		mTomcat.addRole("admin", "admin");
 		mTomcat.addRole("admin", "user");
 		mTomcat.addRole("user", "user");
-		mTomcat.addWebapp(mTomcat.getHost(), this.mContextPath, this.mWebApp.getAbsolutePath());
-		mAppBaseURL = "http://localhost:" + getTomcatPort() + this.mContextPath;
+
+		LOGGER.info("Start the server...");
+		mTomcat.start();
 	}
 
 	/**
@@ -78,31 +78,13 @@ public abstract class AbstractEmbeddedTomcatTest {
 	@After
 	public final void teardown() throws Throwable {
 		LOGGER.info("Stop the server...");
-		
-		if (mTomcat.getServer() != null
-                && mTomcat.getServer().getState() != LifecycleState.DESTROYED) {
-            if (mTomcat.getServer().getState() != LifecycleState.STOPPED) {
-            	mTomcat.stop();
-            }
-            mTomcat.destroy();
-        }
-	}
 
-	/**
-	 * Prepares a new integration test.
-	 * 
-	 * @param applicationId
-	 *            the name of the webapp
-	 * @throws Exception
-	 *             if anything goes wrong
-	 */
-	public AbstractEmbeddedTomcatTest(final String applicationId) throws Exception {
-		LOGGER.info("Start the server...");
-		this.mContextPath = "/" + applicationId;
-		this.mWebApp = new File(mWorkingDir, applicationId);
-		File oldWebApp = new File(mWebApp.getAbsolutePath());
-		FileUtils.deleteDirectory(oldWebApp);
-		new ZipExporterImpl(createWebArchive()).exportTo(new File(mWorkingDir + "/test.war"), true);
+		if (mTomcat.getServer() != null && mTomcat.getServer().getState() != LifecycleState.DESTROYED) {
+		if (mTomcat.getServer().getState() != LifecycleState.STOPPED) {
+			mTomcat.stop();
+		}
+		 mTomcat.destroy();
+		 }
 	}
 
 	/**
@@ -116,7 +98,7 @@ public abstract class AbstractEmbeddedTomcatTest {
 	 * @return the URL the app is running on
 	 */
 	protected String getAppBaseURL() {
-		return mAppBaseURL;
+		return "http://localhost:" + getTomcatPort() + "/" + getApplicationId();
 	}
 
 	/**
@@ -124,4 +106,8 @@ public abstract class AbstractEmbeddedTomcatTest {
 	 */
 	protected abstract WebArchive createWebArchive();
 
+	/**
+	 * @return the name of the application to test.
+	 */
+	protected abstract String getApplicationId();
 }

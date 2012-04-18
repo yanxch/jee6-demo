@@ -28,12 +28,32 @@
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
 
+
+	<servlet>
+		<servlet-name>DefaultServlet</servlet-name>
+		<servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>0</param-value>
+		</init-param>
+		<init-param>
+			<param-name>listings</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DefaultServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
 	<session-config>
 		<session-timeout>15</session-timeout>
 		<cookie-config>
 			<http-only>true</http-only>
-			<!--  The following can only be activated when on SSL -->
-			<!-- <secure>true</secure> -->
+			<!-- The following can only be activated when on SSL -->
+			<!-- <secure>true</secure> --> 
 		</cookie-config>
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
@@ -50,7 +70,7 @@
 			<description></description>
 			<role-name>user</role-name>
 		</auth-constraint>
-		<!--  The following enforces SSL  -->
+		<!-- The following enforces SSL -->
 		<!-- <user-data-constraint> <transport-guarantee>CONFIDENTIAL</transport-guarantee> 
 			</user-data-constraint> -->
 	</security-constraint>
@@ -81,7 +101,7 @@
 		<realm-name>admin</realm-name>
 		<form-login-config>
 			<form-login-page>/faces/login.xhtml</form-login-page>
-			<form-error-page>/faces/loginError.xhtml</form-error-page>
+			<form-error-page>/faces/login.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
 
