@@ -30,7 +30,7 @@ public class PerformanceInterceptor implements Serializable {
      * @throws Exception if anything goes wrong
      */
     @AroundInvoke
-    public Object logPerformance(final InvocationContext context) throws Exception {
+    public Object invoke(final InvocationContext context) throws Exception {
         long start = System.currentTimeMillis();
 
         Object value = context.proceed();
