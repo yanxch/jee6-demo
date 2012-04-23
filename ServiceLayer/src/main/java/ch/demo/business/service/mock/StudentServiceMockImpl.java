@@ -11,6 +11,7 @@ import javax.enterprise.inject.Alternative;
 import javax.persistence.NoResultException;
 
 import ch.demo.business.interceptors.Benchmarkable;
+import ch.demo.business.interceptors.Secure;
 import ch.demo.business.service.StudentService;
 import ch.demo.dom.Student;
 
@@ -48,12 +49,14 @@ public class StudentServiceMockImpl implements StudentService, Serializable {
 
     /** {@inheritDoc} */
     @Override
+    @Secure(roles = { "user" })
     public int getNbStudent() {
         return this.mStudentList.size();
     }
 
     /** {@inheritDoc} */
     @Override
+    @Secure(roles = { "user" })
     public List<Student> getAll() {
         return this.mStudentList;
     }
@@ -61,12 +64,14 @@ public class StudentServiceMockImpl implements StudentService, Serializable {
     /** {@inheritDoc} */
     @Override
     @Benchmarkable
+    @Secure(roles = { "admin" })
     public void add(final Student student) {
         this.mStudentList.add(student);
     }
 
     /** {@inheritDoc} */
     @Override
+    @Secure(roles = { "user" })
     public int[] getDistribution(final int n) {
         int[] grades = new int[n];
 
@@ -78,6 +83,7 @@ public class StudentServiceMockImpl implements StudentService, Serializable {
 
     /** {@inheritDoc} */
     @Override
+    @Secure(roles = { "user" })
     public Student getStudentById(final String id) {
         for (Student s : this.getAll()) {
             if (s.getKey().equals(id)) {
@@ -86,8 +92,9 @@ public class StudentServiceMockImpl implements StudentService, Serializable {
         }
         throw new NoResultException();
     }
-    
+
     @Override
+    @Secure(roles = { "user" })
     public Student getStudentByLastName(final String lastname) {
         for (Student s : this.getAll()) {
             if (s.getLastName().equals(lastname)) {

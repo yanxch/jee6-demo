@@ -13,9 +13,14 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
 	</listener>
+    <listener>
+        <listener-class>ch.demo.web.SecurityListener</listener-class>
+    </listener>
+
 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
@@ -53,7 +58,7 @@
 		<cookie-config>
 			<http-only>true</http-only>
 			<!-- The following can only be activated when on SSL -->
-			<!-- <secure>true</secure> --> 
+			<!-- <secure>true</secure> -->
 		</cookie-config>
 		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>

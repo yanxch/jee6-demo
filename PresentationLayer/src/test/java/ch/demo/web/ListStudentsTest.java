@@ -37,7 +37,6 @@ public class ListStudentsTest extends AbstractEmbeddedTomcatTest {
 		driver.get(getAppBaseURL());
 
 		login(driver);
-
 		Assert.assertTrue(driver.getPageSource().contains("Steve Hostettler"));
 		WebElement element = driver.findElement(By.xpath("//button[contains(@id,'register')]"));
 		Assert.assertNotNull(element);

@@ -15,6 +15,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ExceptionQueuedEvent;
 import javax.faces.event.ExceptionQueuedEventContext;
 
+import org.apache.myfaces.lifecycle.ViewNotFoundException;
+
 /**
  * Provides support for handling exception that are related to timeout, inexisting conversations (for instance, because
  * the conversation-id has been saved in a shortcut).
@@ -78,7 +80,8 @@ class WebExceptionHandlerWrapper extends ExceptionHandlerWrapper {
 			ExceptionQueuedEventContext eqec = event.getContext();
 
 			if (eqec.getException() instanceof ViewExpiredException
-					|| eqec.getException() instanceof NonexistentConversationException) {
+					|| eqec.getException() instanceof NonexistentConversationException
+					|| eqec.getException() instanceof ViewNotFoundException) {
 				FacesContext context = eqec.getContext();
 				NavigationHandler navHandler = context.getApplication().getNavigationHandler();
 

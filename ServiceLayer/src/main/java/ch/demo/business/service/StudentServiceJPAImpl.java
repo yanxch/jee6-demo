@@ -15,6 +15,7 @@ import javax.persistence.criteria.Root;
 
 import org.slf4j.Logger;
 
+import ch.demo.business.interceptors.Secure;
 import ch.demo.dom.Student;
 import ch.demo.helpers.jpa.Transactional;
 
@@ -50,6 +51,7 @@ public class StudentServiceJPAImpl implements StudentService {
 
     @Override
     @Transactional
+    @Secure(roles = { "user" })
     public List<Student> getAll() {
         CriteriaBuilder qb = mEntityManager.getCriteriaBuilder();
         CriteriaQuery<Student> c = qb.createQuery(Student.class);
@@ -59,18 +61,21 @@ public class StudentServiceJPAImpl implements StudentService {
 
     @Override
     @Transactional
+    @Secure(roles = { "user" })
     public int getNbStudent() {
         return getAll().size();
     }
 
     @Override
     @Transactional
+    @Secure(roles = { "admin" })
     public void add(final Student student) {
         mEntityManager.persist(student);
     }
 
     @Override
     @Transactional
+    @Secure(roles = { "user" })
     public int[] getDistribution(final int n) {
         int[] grades = new int[n];
 
@@ -82,6 +87,7 @@ public class StudentServiceJPAImpl implements StudentService {
 
     @Override
     @Transactional
+    @Secure(roles = { "user" })
     public Student getStudentById(final String id) {
         CriteriaBuilder qb = mEntityManager.getCriteriaBuilder();
         CriteriaQuery<Student> c = qb.createQuery(Student.class);
@@ -94,6 +100,7 @@ public class StudentServiceJPAImpl implements StudentService {
 
     @Override
     @Transactional
+    @Secure(roles = { "user" })
     public Student getStudentByLastName(final String lastname) {
         CriteriaBuilder qb = mEntityManager.getCriteriaBuilder();
         CriteriaQuery<Student> c = qb.createQuery(Student.class);

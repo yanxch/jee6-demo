@@ -3,6 +3,7 @@ package ch.demo.business.service;
 import java.io.Serializable;
 import java.util.List;
 
+import ch.demo.business.interceptors.Secure;
 import ch.demo.dom.Student;
 
 /**
@@ -19,6 +20,7 @@ public interface StudentService extends Serializable {
     /**
      * @return all the registered students
      */
+    @Secure(roles = { "admin" })
     List<Student> getAll();
 
     /**
@@ -48,7 +50,7 @@ public interface StudentService extends Serializable {
      * @return the student with the given id.
      */
     Student getStudentById(String id);
-    
+
     /**
      * @param lastname
      *            of the student

@@ -5,14 +5,15 @@
            http://java.sun.com/xml/ns/javaee http://jboss.org/schema/cdi/beans_1_0.xsd
            http://jboss.org/schema/weld/beans http://jboss.org/schema/weld/beans_1_1.xsd">
 
-    <interceptors>
-        <class>ch.demo.business.interceptors.PerformanceInterceptor</class>
-    </interceptors>
-    
-    <alternatives>
-        <class>ch.demo.business.service.mock.StudentServiceMockImpl</class>
-    </alternatives>
-    
+	<interceptors>
+		<class>ch.demo.business.interceptors.PerformanceInterceptor</class>
+		<class>ch.demo.business.interceptors.SecurityInterceptor</class>
+	</interceptors>
+
+	<alternatives>
+		<class>ch.demo.business.service.mock.StudentServiceMockImpl</class>
+	</alternatives>
+
 	<weld:scan>
 		<weld:include pattern="ch.demo.*" />
 	</weld:scan>

@@ -8,14 +8,16 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import ch.demo.helpers.SecurityContext;
 
 /**
  * Manage the locales of the application. This session bean contains the locale information of the current (attached to
@@ -58,7 +60,7 @@ public class SessionBean implements Serializable {
 	/**
 	 * @return the username
 	 */
-	public final String getUsername() {
+	public String getUsername() {
 		Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
 		if (principal != null) {
 			return principal.getName();
@@ -110,6 +112,7 @@ public class SessionBean implements Serializable {
 		if (session != null) {
 			session.invalidate();
 		}
+		SecurityContext.removePrincipal();
 		return "logout";
 	}
 
@@ -123,7 +126,13 @@ public class SessionBean implements Serializable {
 		try {
 			String user = getRequest().getParameter(USERNAME);
 			String password = getRequest().getParameter(PASSWORD);
-			((HttpServletRequest) fc.getExternalContext().getRequest()).login(user, password);
+			HttpServletRequest request = ((HttpServletRequest) fc.getExternalContext().getRequest());
+			request.login(user, password);
+			
+			// The following line sets the principal in thread local to be used by the back end beans.
+			// This is not meant to use is real project and is there only for demonstration purposes.
+			SecurityContext.setPrincipal(SecurityListener.getMyPrincipal(request));
+
 		} catch (ServletException ex) {
 			FacesMessage message = new FacesMessage();
 

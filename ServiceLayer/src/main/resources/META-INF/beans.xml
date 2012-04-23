@@ -5,7 +5,7 @@
            http://java.sun.com/xml/ns/javaee http://jboss.org/schema/cdi/beans_1_0.xsd
            http://jboss.org/schema/weld/beans http://jboss.org/schema/weld/beans_1_1.xsd">
 	<interceptors>
-		<class>ch.demo.helpers.jpa.TransactionInterceptor</class>
+		<class>ch.demo.helpers.jpa.TransactionInterceptor</class>		
 	</interceptors>
 
 	<weld:scan>
