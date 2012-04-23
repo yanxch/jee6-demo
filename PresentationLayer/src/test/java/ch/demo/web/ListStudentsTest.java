@@ -41,10 +41,10 @@ public class ListStudentsTest extends AbstractEmbeddedTomcatTest {
 		WebElement element = driver.findElement(By.xpath("//button[contains(@id,'register')]"));
 		Assert.assertNotNull(element);
 		element.click();
-
-		Assert.assertTrue(driver.getPageSource().contains("Enregistrer un étudiant"));
-
+		
+		Assert.assertTrue(driver.getPageSource().contains("Enregistrer un "));
 	}
+
 
 	/**
 	 * Test a simple workflow. It verifies that the student list does return something useful.
