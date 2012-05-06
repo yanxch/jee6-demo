@@ -1,6 +1,9 @@
 package ch.demo.dom;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -47,6 +50,7 @@ public class StudentPersistenceTest extends AbstractDBTest {
         getTrx().commit();
 
         query = getEntityManager().createQuery(c);
+
         LOGGER.info("Number of students in the DB:"
                 + query.getResultList().size());
         Assert.assertEquals(6, query.getResultList().size());
@@ -71,8 +75,30 @@ public class StudentPersistenceTest extends AbstractDBTest {
             for (Grade g : s.getGrades()) {
                 LOGGER.info("***** Grade : " + g.getDiscipline());
             }
+
+            for (Map.Entry<Discipline, Integer> g : s.getAlternativeGrades()
+                    .entrySet()) {
+                LOGGER.info("***** Grade : " + g.getKey() + " : "
+                        + g.getValue());
+            }
         }
 
+        TypedQuery<Student> query2 = getEntityManager().createQuery(
+                "SELECT s FROM Student s", Student.class);
+        LOGGER.info("Number of students in the DB:"
+                + query2.getResultList().size());
+
+        TypedQuery<Student> queryStudentsByFirstName = getEntityManager().createNamedQuery(
+                "findAllStudentsByFirstName", Student.class);
+        queryStudentsByFirstName.setParameter("firstname", "Steve");
+        Collection<Student> students = queryStudentsByFirstName.getResultList();
+        LOGGER.info("Number of students in the DB:" + students.size());
+        
+        
+        Query query3 = getEntityManager().createNativeQuery("select FIRST_NAME, LAST_NAME from STUDENTS");
+        @SuppressWarnings("unchecked")
+        List<String[]> list = query3.getResultList();
+        LOGGER.info("Number of students:" + list.size());
     }
 
     /**

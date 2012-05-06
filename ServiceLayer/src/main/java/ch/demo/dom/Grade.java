@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -34,6 +36,11 @@ public class Grade implements Serializable {
     /** The actual grade. */
     @Column(name = "GRADE", nullable = true)
     private Integer mGrade;
+
+    /** The student that has obtained this grade. */
+    @ManyToOne
+    @JoinColumn(name = "STUDENT_ID", nullable = true)
+    private Student mStudent;
 
     /**
      * Constructor that builds a grade for a given discipline.
@@ -100,6 +107,20 @@ public class Grade implements Serializable {
      */
     public final long getId() {
         return mId;
+    }
+
+    /**
+     * @return the student
+     */
+    public Student getStudent() {
+        return mStudent;
+    }
+
+    /**
+     * @param student the student to set
+     */
+    public void setStudent(final Student student) {
+        mStudent = student;
     }
 
 }

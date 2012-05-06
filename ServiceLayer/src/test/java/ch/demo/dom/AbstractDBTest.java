@@ -12,7 +12,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import org.apache.derby.tools.ij;
-import org.dbunit.DataSourceDatabaseTester;
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
@@ -35,7 +34,7 @@ public abstract class AbstractDBTest {
 
     /** The default logger for the class. */
     public static final Logger LOGGER = LoggerFactory
-            .getLogger(DataSourceDatabaseTester.class);
+            .getLogger(AbstractDBTest.class);
 
     /** The factory that produces entity manager. */
     private static EntityManagerFactory mEmf;

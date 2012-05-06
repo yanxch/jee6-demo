@@ -46,14 +46,7 @@ public class SecurityInterceptor implements Serializable {
         LOGGER.info("The name of the current principal is "
                 + principal.getName());
 
-        boolean autorised = false;
-        for (String role : roles) {
-            if (principal.isUserInRole(role)) {
-                autorised = true;
-                break;
-            }
-        }
-        if (!autorised) {
+        if (!principal.isUserInRoles(roles)) {
             throw new IllegalAccessException("Current user not autorised!");
         }
 
@@ -70,10 +63,6 @@ public class SecurityInterceptor implements Serializable {
      */
     private String[] getRoles(final Method method) {
         // first look at method-level annotations, since they take priority
-
-        if (method.isAnnotationPresent(Secure.class)) {
-            return method.getAnnotation(Secure.class).roles();
-        }
 
         if (method.isAnnotationPresent(Secure.class)) {
             return method.getAnnotation(Secure.class).roles();

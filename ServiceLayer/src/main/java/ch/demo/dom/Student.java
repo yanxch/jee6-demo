@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,8 +19,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
@@ -35,9 +41,10 @@ import ch.demo.dom.jpa.JPAPhoneNumberConverter;
  * @author hostettler
  */
 @Entity
+@NamedQuery(name = "findAllStudentsByFirstName", query = "SELECT s FROM Student s WHERE s.mFirstName = :firstname")
 @Table(name = "STUDENTS")
 @SecondaryTable(name = "PICTURES", pkJoinColumns = @PrimaryKeyJoinColumn(
-        name = "STUDENT_ID", referencedColumnName = "ID"))
+            name = "STUDENT_ID", referencedColumnName = "ID"))
 public class Student implements Serializable {
 
     /** The serial-id. */
@@ -76,9 +83,16 @@ public class Student implements Serializable {
     private Address mAddress;
 
     /** The set of grades of the student. */
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "STUDENT_ID", nullable = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "mStudent")
+    @OrderBy("mDiscipline DSC")
     private List<Grade> mGrades;
+
+    /** Alternative representation of the set of grades of the student. */
+    @ElementCollection
+    @CollectionTable(name = "GRADES", joinColumns = @JoinColumn(name = "STUDENT_ID"))
+    @MapKeyColumn(name = "Discipline")
+    @Column(name = "GRADE")
+    private Map<Discipline, Integer> mAlternativeGrades;
 
     /** A picture of the student. */
     @Lob
@@ -320,10 +334,18 @@ public class Student implements Serializable {
     }
 
     /**
-     * @param badge the badge to set
+     * @param badge
+     *            the badge to set
      */
     public void setBadge(final Badge badge) {
         mBadge = badge;
+    }
+
+    /**
+     * @return the alternativeGrades
+     */
+    public Map<Discipline, Integer> getAlternativeGrades() {
+        return mAlternativeGrades;
     }
 
 }

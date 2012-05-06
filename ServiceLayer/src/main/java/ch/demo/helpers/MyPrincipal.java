@@ -46,4 +46,17 @@ public class MyPrincipal implements Principal, Serializable {
     public boolean isUserInRole(final String pRole) {
         return roles.contains(pRole);
     }
+    
+    /**
+     * @param pRoles is the list of roles to check
+     * @return whether the current principal is authorised on the given role.
+     */
+    public boolean isUserInRoles(final String[] pRoles) {
+        for (String role : pRoles) {
+            if (isUserInRole(role)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
