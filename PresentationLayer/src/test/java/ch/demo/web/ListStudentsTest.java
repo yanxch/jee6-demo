@@ -47,7 +47,7 @@ public class ListStudentsTest extends AbstractEmbeddedTomcatTest {
 
 
 	/**
-	 * Test a simple workflow. It verifies that the student list does return something useful.
+	 * Test a simple workflow. Verifies that upon unsuccessful login the user is redirected to the login page.
 	 * 
 	 * @throws Exception
 	 *             if anything goes wrong
@@ -67,6 +67,30 @@ public class ListStudentsTest extends AbstractEmbeddedTomcatTest {
 		Assert.assertTrue(driver.getPageSource().contains("password"));
 		Assert.assertTrue(driver.getPageSource().contains("login"));
 
+	}
+	
+	/**
+	 * Verifies that a normal user cannot add a student.
+	 * 
+	 * @throws Exception
+	 *             if anything goes wrong
+	 */
+	@Test
+	public void testNotEnoughRights() throws Exception {
+		WebDriver driver = new HtmlUnitDriver();
+		driver.get(getAppBaseURL());
+
+		WebElement username = driver.findElement(By.xpath("//input[contains(@id,'username')]"));
+		username.sendKeys("user");
+		WebElement password = driver.findElement(By.xpath("//input[contains(@id,'password')]"));
+		password.sendKeys("user");
+		WebElement login = driver.findElement(By.xpath("//button[contains(@id,'login')]"));
+		login.click();
+		Assert.assertTrue(driver.getPageSource().contains("Steve Hostettler"));
+		WebElement element = driver.findElement(By.xpath("//button[contains(@id,'register')]"));
+		Assert.assertNotNull(element);
+		Assert.assertFalse(element.isEnabled());
+		
 	}
 
 	/**
