@@ -8,6 +8,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/xhtml/templates/layout.xhtml">
 
+
 	<ui:define name="title"> 
       #{msgs.titleList}
    </ui:define>
@@ -82,6 +83,7 @@
 				</p:column>
 
 				<f:facet name="footer">
+				
 					<p:commandButton value="#{msgs.details}"
 						icon="ui-icon ui-icon-search"
 						disabled="#{manageStudentRegistration.service.nbStudent==0 || manageStudentRegistration.selectedStudent == null}"
@@ -98,10 +100,12 @@
 			<h:panelGrid id="buttonGrid" columns="1"
 				style="margin-top:10px;width: 100%;"
 				columnClasses="alignleft,alignright">
+				
 				<p:commandButton id="register" name="register" 
 				    disabled="#{!sessionBean.admin}"
 				    value="#{msgs.save}"  icon="ui-icon ui-icon-pencil" 
-					action="#{manageStudentRegistration.toRegistration}" ajax="false" />
+					action="#{manageStudentRegistration.toRegistration}" ajax="false" />					
+					
 			</h:panelGrid>
 		</h:form>
 
