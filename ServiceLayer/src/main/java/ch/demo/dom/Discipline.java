@@ -1,10 +1,13 @@
 package ch.demo.dom;
 
+import javax.xml.bind.annotation.XmlEnum;
+
 /**
  * Describes the discipline, the student studies.
  * 
  * @author hostettler
  */
+@XmlEnum(String.class)
 public enum Discipline {
     /** Maths. */
     MATHEMATICS("Mathematics"),

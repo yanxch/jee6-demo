@@ -29,11 +29,18 @@ import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.eclipse.persistence.annotations.Convert;
 import org.eclipse.persistence.annotations.Converter;
 
 import ch.demo.dom.jpa.JPAPhoneNumberConverter;
+import ch.demo.dom.moxy.PhoneNumberAdapter;
 
 /**
  * Models a student.
@@ -43,8 +50,11 @@ import ch.demo.dom.jpa.JPAPhoneNumberConverter;
 @Entity
 @NamedQuery(name = "findAllStudentsByFirstName", query = "SELECT s FROM Student s WHERE s.mFirstName = :firstname")
 @Table(name = "STUDENTS")
-@SecondaryTable(name = "PICTURES", pkJoinColumns = @PrimaryKeyJoinColumn(
-            name = "STUDENT_ID", referencedColumnName = "ID"))
+@SecondaryTable(name = "PICTURES", pkJoinColumns = 
+@PrimaryKeyJoinColumn(name = "STUDENT_ID", referencedColumnName = "ID"))
+@XmlRootElement(name = "student")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(namespace = "http://ch.demo.app")
 public class Student implements Serializable {
 
     /** The serial-id. */
@@ -58,6 +68,7 @@ public class Student implements Serializable {
 
     /** The student last name. */
     @Column(name = "LAST_NAME", length = 35)
+    @XmlElement(name = "last_name")
     private String mLastName;
 
     /** The student first name. */
@@ -73,6 +84,7 @@ public class Student implements Serializable {
     @Column(name = "PHONE_NUMBER")
     @Converter(name = "phoneConverter", converterClass = JPAPhoneNumberConverter.class)
     @Convert("phoneConverter")
+    @XmlJavaTypeAdapter(PhoneNumberAdapter.class)
     private PhoneNumber mPhoneNumber;
 
     /** The student's gender. */

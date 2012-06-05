@@ -13,6 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Models a security badge.
@@ -21,6 +26,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "BADGES")
+@XmlRootElement(name = "badge", namespace = "http://ch.demo.app")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Badge implements Serializable {
 
     /** The serial-id. */
@@ -34,11 +41,13 @@ public class Badge implements Serializable {
 
     /** The student's security level. */
     @Column(name = "SECURITY_LEVEL")
+    @XmlAttribute
     private Long mSecurityLevel;
 
     /** The student that owns this badge. */
     @OneToOne
     @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID")
+    @XmlTransient
     private Student mStudent;
 
     /**
